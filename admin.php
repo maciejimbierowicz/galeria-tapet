@@ -21,9 +21,9 @@
     <body>
         <div class="admin-menu">
             <ul>
-                <li><a href="#">Tapety</a></li>
-                <li><a href="#">Kategorie</a></li>
-                <li><a href="#">Użytkownicy</a></li>
+                <li><a href="list.php?list=wallpapers">Tapety</a></li>
+                <li><a href="list.php?list=categories">Kategorie</a></li>
+                <li><a href="list.php?list=users">Użytkownicy</a></li>
             </ul>
         </div>
 
