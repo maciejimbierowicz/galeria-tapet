@@ -48,20 +48,17 @@ if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
         header("Location: index.php?error=$em");
     }
 
-} else {
-    echo "cos nie dziala";
-}
+} 
 
 
 if (isset($_POST['submitCategory']) && isset($_POST['newCategory'])) {
     $category_name = $_POST['newCategory'];
+    $date = date("Y-m-d H:i:s");
+    echo $category_name;
     $sql = "INSERT INTO categories
-                VALUES (null, '$category_name')";
+                VALUES (null, '$category_name', '$date')";
                 $rows = $pdo->query($sql);
-				echo "Succesfully added new category!";
-} else {
-    echo "cos nie dziala";
-}
+} 
 
 if (isset($_POST['submitUser']) && isset($_POST['login'])) {
     $login = $_POST['login'];
@@ -70,6 +67,4 @@ if (isset($_POST['submitUser']) && isset($_POST['login'])) {
     $sql = "INSERT INTO users VALUES (null, '$login', '$password', '$join_date')";
                 $rows = $pdo->query($sql);
 				echo "New user added!";
-} else {
-    echo "cos nie dziala";
-}
+} 
