@@ -29,11 +29,11 @@ $rows = $result->fetchAll();
 
 
 <div class="admin-menu">
-            <ul>
-                <li><a href="list.php?list=wallpapers">Tapety</a></li>
-                <li><a href="list.php?list=categories">Kategorie</a></li>
-                <li><a href="list.php?list=users">Użytkownicy</a></li>
-            </ul>
+            <div>
+                <a class='btn btn-sm filter-button' href="list.php?list=wallpapers">Tapety</a>
+                <a class='btn btn-sm filter-button' href="list.php?list=categories">Kategorie</a>
+                <a class='btn btn-sm filter-button' href="list.php?list=users">Użytkownicy</a>
+</div>
         </div>
         <?php 
         if ($list === 'wallpapers') {

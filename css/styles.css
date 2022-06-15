@@ -1,29 +1,80 @@
-body {
+ body {
     text-align: center;
+    background-color: rgb(255, 255, 255);
+    color: #009999;
+    
     
 }
 
-img {
-    max-width: 100%;
+.navbar-brand {
+    font-size: 1.6rem;
+}
+
+.wallpaper-name {
+    color: #999;
+}
+
+.navbar {
+    background-color: white;
+    padding: 20px 7px 0 7px;
+}
+
+.category-button {
+    background-color: lightblue;
+    min-height: 200px;
+    
+    
+}
+
+
+
+.filter-button
+{
+    font-size: 16px;
+    border: 1px solid white;
+    border-radius: 5px;
+    text-align: center;
+    color: #009999;
+    margin-right: 10px;
+    margin-bottom: 30px;
+
+}
+.filter-button:hover
+{
+    font-size: 16px;
+    border: 1px solid #FFA500;
+    border-radius: 5px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #FFA500;
+
 }
 
 .gallery {
-    background-color: #dbddf1;
-    padding: 80px 0;
+    width: 100%;
+    padding-bottom: 100px;
 }
 
 .gallery img {
-    background-color: #ffffff;
-    padding: 15px;
-    width: 70%;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
     cursor: pointer;
+    max-height: 170px;
+    width: 300px;
+    transition: transform 0.4s, filter 0.4s ease-in-out;
+} 
+
+
+.gallery-image:hover {
+    transform: scale(1.05);
+    
 }
 
 /* ----------------------- MODAL SECTION  -----------------------*/
 .intro{
     background-color: #ddd;
     height: 660px;
+    display:flex;
+    justify-content: center;
+
 }
 .row{
     width: 100%;
@@ -66,23 +117,38 @@ input[type="password"]{
 }
 
 .modal-title{
-    margin-left: 140px;
     font-size: 45px;
     letter-spacing: 2px;
     font-family: 'Teko', sans-serif;
 }
-.modal-body{
-    margin-left: 120px;
-}
+
 .btn{
     margin-top: 10px;
     width: 240px;
 }
 
 .admin-menu {
-    background-color: grey;
+    background-color: lightblue;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.modal-header {
+    justify-content: center;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+}
+
+
+.page-navigation {
+    width: fit-content;
+}
 
 /* TABLE\ */
 
@@ -132,3 +198,55 @@ input[type="password"]{
     width: 80px;
     font-size: 12px;
 }
+
+
+
+
+/* PAGING STYLE */
+
+#active {
+    background-color: blue;
+}
+
+.page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 70px
+}
+
+.paging-link:hover {
+    background-color:rgba(0, 0, 0, 0.15);
+}
+
+.paging-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    font-size: 1.1rem;
+    color: #999;
+    background-color: #EEEEEE;
+    margin: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease; }
+
+/* WALLPAPER SITE */
+
+.product-section {
+    text-align: center
+}
+
+.wallpaper-description {
+    background-color: rgb(214, 210, 210);
+    min-height: 85%;
+    
+}
+
+.product-section img {
+    max-height: 85%; 
+    min-width: 95%
+}
+

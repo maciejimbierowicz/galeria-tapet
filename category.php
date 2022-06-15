@@ -1,77 +1,102 @@
-<?php 
-    require 'layout/header.php';
-    require 'libs/functions.php';
+<?php
+require 'layout/header.php';
+require 'libs/functions.php';
 
-    $categories = get_categories();
-    $wallpaperCategory = $_GET['category'];
-    $pdo = get_connection();
+$categories = get_categories();
+$wallpaperCategory = $_GET['category'];
+$pdo = get_connection();
 
-    $rows = change_category($wallpaperCategory);
+$rows = change_category($wallpaperCategory);
 
-    
+
 ?>
 
 
-    <ul>
+<div class="category-button container-fluid">
+    <h2 class="mt-4 mb-0 text-center" style="padding-top: 20px; padding-bottom: 20px;">Kategorie</h2>
+    <div class='row'>
         <?php
-        foreach($categories as $category){
+
+        foreach ($categories as $category) {
             $categoryName = $category['name'];
-            echo "<li><a href='category.php?category=$categoryName' type='button' class='category-button'>$categoryName</a></li>";
+            echo "<div class='col-lg-2 col-md-4 col-sm-6'>";
+            echo "<a class='btn btn-sm filter-button cat-button btn-block' style='width: fit-content;' href='category.php?category=$categoryName' type='button' >$categoryName</a>";
+            echo "</div>";
         }
         ?>
-    </ul>
+    </div>
+</div>
+<br /><br /><br />
 
-    <?php 
+<?php
 
-    
-    $results_per_page = 5;
-    $number_of_results = count($rows);
 
-    $number_of_pages = ceil($number_of_results / $results_per_page);
-    
-    if (!isset($_GET['page'])) {
-        $page = 1;
-    } else {
-        $page = $_GET['page'];
-    }
+$results_per_page = 5;
+$number_of_results = count($rows);
 
-    $starting_limit_number = ($page - 1)*$results_per_page;
-    
-    $sql = "SELECT * FROM wallpapers WHERE category= '$wallpaperCategory' LIMIT " . $starting_limit_number . ',' . $results_per_page;
-   
-    
-    $pdo = get_connection();
-    $result = $pdo->query($sql);
-    $rows = $result->fetchAll();
+$number_of_pages = ceil($number_of_results / $results_per_page);
 
-    ?>
+if (!isset($_GET['page'])) {
+    $page = 1;
+} else {
+    $page = $_GET['page'];
+}
 
-    <section class='gallery min-vh-100'> 
-        <?php echo "<h1 style='text-align:center'>$wallpaperCategory</h1>"?>
-        <div class='container-lg'>
-        <div class='row gy-4 row-cols-1 row-cols-sm-3 row-cols-md-4'>
-             <?php 
-                foreach($rows as $wallpaper) {
-                    $url = $wallpaper['url'];
-                    $name = $wallpaper['name'];
-                    $resolution = $wallpaper['resolution'];
-                    $idLink = 'wallpaper.php?id='.$wallpaper['id'];
+$starting_limit_number = ($page - 1) * $results_per_page;
 
-                    echo "<div class='col'>";
-                    echo "<a href='$idLink'><img src='$url' class='gallery-item' alt='gallery'></a>";
-                    echo "<p>$name</p>";
-                    echo "<p>$resolution</p>";
-                    echo "</div>";
-                }
-            ?> 
+$sql = "SELECT * FROM wallpapers WHERE category= '$wallpaperCategory' LIMIT " . $starting_limit_number . ',' . $results_per_page;
+
+
+$pdo = get_connection();
+$result = $pdo->query($sql);
+$rows = $result->fetchAll();
+
+?>
+
+<section class='gallery'>
+    <div class='container-fluid'>
+        <?php echo "<h2 class='text-lg-start mt-4 mb-0'>$wallpaperCategory</h2>" ?>
+        <hr class="mt-2 mb-5">
+        <div class='row text-center text-lg-start'>
+            <?php
+            foreach ($rows as $wallpaper) {
+                $url = $wallpaper['url'];
+                $name = $wallpaper['name'];
+                $resolution = $wallpaper['resolution'];
+                $idLink = 'wallpaper.php?id=' . $wallpaper['id'];
+
+                echo "<div class='col-lg-3 col-md-4 col-6 mb-5'>";
+                echo "<a class='d-block h-60' href='$idLink'><img src='$url' class='img-fluid gallery-image' alt='gallery'></a>";
+                echo <<<END
+                    <div class="d-flex justify-content-between">
+                    <span class="wallpaper-name">$name</span>
+                        
+                    </div>
+                    END;
+                echo "</div>";
+            }
+            ?>
         </div>
-        <?php 
-        for ($page=1; $page<=$number_of_pages; $page++ ) {
-            echo'<a href="category.php?category='. $wallpaperCategory . '&page=' .$page .'">' . $page . ' </a>';
-        }?>
+        <div class='page-container'>
+            <?php
+            $active_page = $page;
+            if ($page != 1) {
+                echo '<a class="page-navigation btn btn-primary" href="category.php?category=' . $wallpaperCategory . '&page=' . $active_page - 1 . '">' . 'Poprzednia Strona</a>';
+            }
+            for ($page = 1; $page <= $number_of_pages; $page++) {
+                if ($active_page == $page) {
+                    echo '<a class="paging-link" id="active" href="category.php?category=' . $wallpaperCategory . '&page=' . $page . '">' . $page . ' </a>';
+                } else {
+                    echo '<a class="paging-link" href="category.php?category=' . $wallpaperCategory . '&page=' . $page . '">' . $page . ' </a>';
+                }
+            }
+            if ($active_page != $number_of_pages) {
+                echo '<a class="page-navigation btn btn-primary" href="category.php?category=' . $wallpaperCategory . '&page=' . $active_page + 1 . '">' . 'Następna Strona</a>';
+            }
+            ?>
+        </div>
+</section>
 
-    </section>
-
-<?php 
-    require 'layout/footer.php';
+<?php
+require 'layout/footer.php';
 ?>
