@@ -16,6 +16,7 @@ $name = $item['name'];
 $resolution = $item['resolution'];
 $description = $item['description'];
 $item_size = $item['weight'];
+$item_category = $item['category'];
 
 $categories = get_categories();
 
@@ -37,24 +38,25 @@ $categories = get_categories();
 </head>
 
 <body>
-    <div class="category-button container-fluid">
-        <h2 class="mt-4 mb-0 text-center" style="padding-top: 20px; padding-bottom: 20px;">Kategorie</h2>
-        <div class='row'>
+<div class="category-button container">
+        <div class="row">
+        <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h1 class="gallery-title">Galeria Tapet</h1>
+        </div>
+        
+        <div class="categories-container">
             <?php
-
             foreach ($categories as $category) {
-                $categoryName = $category['name'];
-                echo "<div class='col-lg-2 col-md-4 col-sm-6'>";
-                echo "<a class='btn btn-sm filter-button cat-button btn-block' style='width: fit-content;' href='category.php?category=$categoryName' type='button' >$categoryName</a>";
-                echo "</div>";
+                $categoryName = $category['name'];        
+                echo "<a class='btn btn-sm filter-button' style='width: fit-content;' href='category.php?category=$categoryName' type='button' >$categoryName</a>";  
             }
             ?>
+            </div>
         </div>
     </div>
-    <br /><br /><br />
     <section class="product-section">
 
-        <div class="container-fluid">
+        <div class="container-fluid mt-4">
             <div class="row mb-4 text-lg-start" style="padding-left: 20px">
                 <h2 class="mt-4 mb-0"><?php echo "$name" ?></h2>
             </div>
@@ -65,10 +67,10 @@ $categories = get_categories();
                 <div class="col-xl-4 col-md-5 col-sm-12">
                     <div class="wallpaper-description">
                         <h3 class="pt-4">Opis:</h3><span><?php echo "$description" ?></span>
-                        <div class="text-center mb-5">
-                            <?php
-                            echo "<a type='button' class='btn btn-primary' href='$url' download>Pobierz</a>";
-                            ?>
+                        <div class="mb-4 mt-4">
+                            <div class="mr-4 mb-2">
+                                <h3>Kategoria: </h3><span><?php echo "$item_category" ?></span>
+                            </div>
                         </div>
                         <div class="mb-4">
                             <div class="mr-4 mb-2">
@@ -77,6 +79,11 @@ $categories = get_categories();
                         </div>
                         <div class="mb-4 pb-3">
                             <h3>Waga pliku: </h3><span><?php echo "$item_size" ?></span>
+                        </div>
+                        <div class="text-center mb-5">
+                            <?php
+                            echo "<a type='button' class='btn btn-primary btn-lg' href='$url' download>Pobierz</a>";
+                            ?>
                         </div>
     </section>
     </br></br>

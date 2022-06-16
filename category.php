@@ -12,22 +12,22 @@ $rows = change_category($wallpaperCategory);
 ?>
 
 
-<div class="category-button container-fluid">
-    <h2 class="mt-4 mb-0 text-center" style="padding-top: 20px; padding-bottom: 20px;">Kategorie</h2>
-    <div class='row'>
-        <?php
-
-        foreach ($categories as $category) {
-            $categoryName = $category['name'];
-            echo "<div class='col-lg-2 col-md-4 col-sm-6'>";
-            echo "<a class='btn btn-sm filter-button cat-button btn-block' style='width: fit-content;' href='category.php?category=$categoryName' type='button' >$categoryName</a>";
-            echo "</div>";
-        }
-        ?>
+<div class="category-button container">
+        <div class="row">
+        <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h1 class="gallery-title">Galeria Tapet</h1>
+        </div>
+        
+        <div class="categories-container">
+            <?php
+            foreach ($categories as $category) {
+                $categoryName = $category['name'];        
+                echo "<a class='btn btn-sm filter-button' style='width: fit-content;' href='category.php?category=$categoryName' type='button' >$categoryName</a>";  
+            }
+            ?>
+            </div>
+        </div>
     </div>
-</div>
-<br /><br /><br />
-
 <?php
 
 
@@ -57,7 +57,7 @@ $rows = $result->fetchAll();
     <div class='container-fluid'>
         <?php echo "<h2 class='text-lg-start mt-4 mb-0'>$wallpaperCategory</h2>" ?>
         <hr class="mt-2 mb-5">
-        <div class='row text-center text-lg-start'>
+        <div class='row text-center text-lg-start photo-container'>
             <?php
             foreach ($rows as $wallpaper) {
                 $url = $wallpaper['url'];
@@ -65,7 +65,7 @@ $rows = $result->fetchAll();
                 $resolution = $wallpaper['resolution'];
                 $idLink = 'wallpaper.php?id=' . $wallpaper['id'];
 
-                echo "<div class='col-lg-3 col-md-4 col-6 mb-5'>";
+                echo "<div class='col-lg-3 col-md-4 col-12 mb-5'>";
                 echo "<a class='d-block h-60' href='$idLink'><img src='$url' class='img-fluid gallery-image' alt='gallery'></a>";
                 echo <<<END
                     <div class="d-flex justify-content-between">

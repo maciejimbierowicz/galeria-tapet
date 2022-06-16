@@ -1,26 +1,29 @@
  body {
     text-align: center;
-    background-color: rgb(255, 255, 255);
-    color: #009999;
+    background-color: #FFFFFF;
+    color: black;
+    font-family: 'Roboto', sans-serif;
     
     
 }
 
 .navbar-brand {
     font-size: 1.6rem;
+    font-family: 'Italiana', serif;
 }
 
 .wallpaper-name {
-    color: #999;
+    color: black;
 }
 
 .navbar {
-    background-color: white;
+    background-color: black;
     padding: 20px 7px 0 7px;
+    padding-bottom: 20px;
 }
 
 .category-button {
-    background-color: lightblue;
+    background-color: #FFFFFF;
     min-height: 200px;
     
     
@@ -52,14 +55,15 @@
 
 .gallery {
     width: 100%;
-    padding-bottom: 100px;
+    padding-bottom: 20px;
+    padding-top: 20px;
 }
 
 .gallery img {
     cursor: pointer;
-    max-height: 170px;
+    height: 170px;
     width: 300px;
-    transition: transform 0.4s, filter 0.4s ease-in-out;
+    transition: transform 0.2s, filter 0.2s ease-in-out;
 } 
 
 
@@ -119,21 +123,26 @@ input[type="password"]{
 .modal-title{
     font-size: 45px;
     letter-spacing: 2px;
-    font-family: 'Teko', sans-serif;
 }
 
-.btn{
-    margin-top: 10px;
+.modal-content .btn{
+    margin-top: 20px;
     width: 240px;
 }
 
+.modal-content label {
+    margin-bottom: 5px;
+}
+
 .admin-menu {
-    background-color: lightblue;
+    margin-top: 20px;
+    background-color: white;
     min-height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 
 .modal-header {
     justify-content: center;
@@ -152,8 +161,8 @@ input[type="password"]{
 
 /* TABLE\ */
 
+
 .table {
-    width: 50%;
     margin: 0 auto;
 }
 
@@ -194,12 +203,9 @@ input[type="password"]{
     display: flex;
 }
 .action-button {
-    justify-content: center;
-    width: 80px;
+    width: fit-content;
     font-size: 12px;
-}
-
-
+} 
 
 
 /* PAGING STYLE */
@@ -250,3 +256,92 @@ input[type="password"]{
     min-width: 95%
 }
 
+footer {
+    height: 170px;
+    background-color: grey;
+    font-size: 16px;
+    font-style: bold;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media screen and (max-width: 767px) {
+    .photo-container {
+        margin-left: 0;
+    }
+
+    .paging-link {
+        display: none;
+
+    }
+
+    .page-navigation {
+        margin-right: 20px;
+    }
+  
+}
+
+.custab {
+    max-width: 70%;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 5% 0;
+    box-shadow: 3px 3px 2px #ccc;
+    transition: 0.5s;
+}
+
+.custab:hover {
+    box-shadow: 3px 3px 0px transparent;
+    transition: 0.5s;
+}
+
+
+.admin-forms {
+    width:50%;
+    margin: 0 auto;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    text-align: center;
+    
+}
+
+.admin-forms h3 {
+    padding-bottom: 15px;
+}
+
+.filter-button
+{
+    font-size: 18px;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+    color: black;
+    margin-bottom: 30px;
+
+}
+.filter-button:hover
+{
+    font-size: 18px;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+    color: #ffffff;
+    background-color: black;
+
+}
+
+.gallery-title
+{
+    font-family: 'Italiana', serif;
+    font-size: 6rem;
+    color: black;
+    text-align: center;
+    padding-top:70px
+    
+}
+
+.categories-container {
+    margin-top: 30px;
+}

@@ -2,6 +2,10 @@
 require 'layout/header.php';
 require 'libs/functions.php';
 
+if (!isset($_SESSION['zalogowany'])) {
+    header("Location: index.php");
+}
+
 $pdo = get_connection();
 $list = $_GET['list'];
 $results_per_page = 10;
@@ -37,23 +41,25 @@ $rows = $result->fetchAll();
         </div>
         <?php 
         if ($list === 'wallpapers') {
-            echo "<a class='btn btn-primary' href='admin.php?list=$list'>Dodaj nową tapetę</a>";
+            echo "<a class='btn btn-primary add-button' href='admin.php?list=$list'>Dodaj nową tapetę</a>";
             } 
         
         else if ($list === 'categories') {
-            echo "<a class='btn btn-primary' href='admin.php?list=$list'>Dodaj nową kategorię</a>";    
+            echo "<a class='btn btn-primary add-button' href='admin.php?list=$list'>Dodaj nową kategorię</a>";    
             } 
             else if ($list === 'users') {
-            echo "<a class='btn btn-primary' href='admin.php?list=$list'>Dodaj nowego użytkownika</a>";    
+            echo "<a class='btn btn-primary add-button' href='admin.php?list=$list'>Dodaj nowego użytkownika</a>";    
             }?>
-        <div class='table'>
-<table class="styled-table">
+        <div class='container'>
+            <div class="row cold-md-offset-2 custyle justify-content-center col-auto">
+<!-- <table class="styled-table"> -->
+    <table class="table table-responsive custab styled-table">
     <thead>
         <tr>
             <th>id</th>
             <th>Data dodania</th>
             <th>Nazwa</th>
-            <th>Operacje</th>
+            <th class="text-center" >Operacje</th>
         </tr>
     </thead>
     <tbody>
@@ -68,9 +74,9 @@ $rows = $result->fetchAll();
             echo "<td>$item_date</td>";
             echo "<td>$name</td>";
             echo "<td>
-                <div class='btn-group'>
-                    <a class='btn btn-secondary action-button' href='edit.php?id=$id&list=$list'>Edytuj</a>
-                    <a class='btn btn-danger action-button' href='delete.php?id=$id&list=$list'>Usuń</a>
+                <div class='btn-group text-lg-start'>
+                    <a class='btn btn-sm btn-secondary action-button' style='width: fit-content' href='edit.php?id=$id&list=$list'>Edytuj</a>
+                    <a class='btn btn-sm btn-danger action-button' style='width:fit-content' href='delete.php?id=$id&list=$list'>Usuń</a>
                     </div>
                     </td>";
             echo "</tr>";
@@ -79,15 +85,31 @@ $rows = $result->fetchAll();
         ?>
     </tbody>
 </table>
-<?php 
 
+</div>
+<div class='page-container'>
+<?php
+$active_page = $page;
+if ($page != 1) {
+    echo '<a class="page-navigation btn btn-primary" href="list.php?list=' . $list . '&page=' . $active_page - 1 . '">' . 'Poprzednia Strona</a>';
+}
 for ($page=1; $page<=$number_of_pages; $page++ ) {
-    echo'<a href="list.php?list='. $list . '&page=' .$page .'">' . $page . ' </a>';
-    
+    if ($active_page == $page) {
+        echo'<a class="paging-link" id="active" href="list.php?list='. $list . '&page=' .$page .'">' . $page . ' </a>';
+    } 
+    else {
+        echo'<a class="paging-link" href="list.php?list='. $list . '&page=' .$page .'">' . $page . ' </a>';
+        }
+}
+if ($active_page != $number_of_pages) {
+    echo '<a class="page-navigation btn btn-primary" href="list.php?list=' . $list . '&page=' . $active_page + 1 . '">' . 'Następna Strona</a>';
 }
             ?>
 </div>
+</div>
 
-
+<?php 
+require 'layout/footer.php';
+?>
 
 

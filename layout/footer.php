@@ -1,4 +1,4 @@
-<footer style='background-color: grey; height: 150px'>
+<footer>
     <p>Copyright by Maciej</p>
 </footer>
 </body>

@@ -1,6 +1,11 @@
 <?php 
 require 'libs/functions.php';
 require 'layout/header.php';
+
+if (!isset($_SESSION['zalogowany'])) {
+    header("Location: index.php");
+}
+
 $pdo = get_connection();
 $categories = get_categories();
 $list = $_GET['list'];
@@ -11,9 +16,17 @@ $item = $result->fetch();
 
 $item_name = $item['name'];
 
+?>
+<div class="admin-menu">
+        <div>
+            <a class='btn btn-default filter-button' href="list.php?list=wallpapers">Tapety</a>
+            <a class='btn btn-default filter-button' href="list.php?list=categories">Kategorie</a>
+            <a class='btn btn-default filter-button' href="list.php?list=users">Użytkownicy</a>
+        </div>
+    </div>
+<?php
 
-
-
+echo "<div class='admin-forms'>";
 if ($list === 'wallpapers') {
     $item_description = $item['description'];
     $item_category = $item['category'];
@@ -24,11 +37,11 @@ if ($list === 'wallpapers') {
         method="post"
         enctype="multipart/form-data">
             <h3>Edytuj tapetę</h3>
-            Nazwa:
+            <p>Nazwa:</p>
             <input type="text" name="wallpaper_name" value='$item_name' required><br>
-            Opis:
+            <p>Opis:</p>
             <input type="text" name="description" value='$item_description' required><br>
-            Kategoria:
+            <p>Kategoria:</p>
             <select  name="category" value='$item_category' required> 
     END; 
 
@@ -51,9 +64,9 @@ else if ($list === 'users') {
         <div class="user-form">
             <form action="edit_submit.php?id=$id" method="post">
                 <h3>Edytuj użytkownika</h3>
-                Login:
+                <p>Login:</p>
                 <input type="text" name="login" value='$item_name' required><br>
-                Hasło:
+                <p>Hasło:</p>
                 <input type="text" name="password" $item_password required><br>
                 <input class="btn btn-primary" type='submit' name='submitUser' value='Dodaj nowego użytkownika'>
             </form>
@@ -66,7 +79,7 @@ else if ($list === 'categories') {
         <div class="category-form">
             <form action="edit_submit.php?id=$id" method="post">
                 <h3>Edytuj kategorię</h3>
-                Nazwa kategorii:
+                <p>Nazwa kategorii:</p>
                 <input type="text" name="newCategory" value='$item_name' required><br>
                 <input class="btn btn-primary" type='submit' name='submitCategory' value='Dodaj kategorię'>
             </form>
@@ -77,3 +90,6 @@ else if ($list === 'categories') {
 else {
     header("Location: index.php");
 }
+echo "</div>";
+
+require 'layout/footer.php';

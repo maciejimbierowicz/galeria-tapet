@@ -33,6 +33,7 @@ if (isset($_GET['list'])) {
     </div>
     <?php
     if (isset($_GET['list'])) {
+        echo "<div class='admin-forms'>";
         if ($list === 'wallpapers') {
             echo <<< END
                 <div class="image-upload-form">
@@ -41,11 +42,11 @@ if (isset($_GET['list'])) {
                     enctype="multipart/form-data">
                         <h3>Dodaj nową tapetę</h3>
                         <input type='file' name='my_image' required><br><br>
-                        Nazwa:
+                        <p>Nazwa:</p>
                         <input type="text" name="wallpaper_name" required><br>
-                        Opis:
+                        <p>Opis:</p>
                         <input type="text" name="description" required><br>
-                        Kategoria:
+                        <p>Kategoria:</p>
                         <select  name="category" required>
                 END;
 
@@ -65,7 +66,7 @@ if (isset($_GET['list'])) {
                     <div class="category-form">
                         <form action="upload.php" method="post">
                         <h3>Dodaj nową kategorię</h3>
-                            Nazwa kategorii:
+                            <p>Nazwa kategorii:</p>
                             <input type="text" name="newCategory" required><br>
                             <input class="btn btn-primary" type='submit' name='submitCategory' value='Dodaj kategorię'>
                         </form>
@@ -76,15 +77,16 @@ if (isset($_GET['list'])) {
                         <div class="user-form">
                         <form action="upload.php" method="post">
                         <h3>Dodaj nowego użytkownika</h3>
-                            Login:
+                            <p>Login:</p>
                             <input type="text" name="login" required><br>
-                            Hasło:
+                            <p>Hasło:</p>
                             <input type="text" name="password" required><br>
                             <input class="btn btn-primary" type='submit' name='submitUser' value='Dodaj nowego użytkownika'>
                         </form>
                         </div>
             END;
         }
+    echo "</div>";
     }
 
     ?>

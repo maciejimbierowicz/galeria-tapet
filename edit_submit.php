@@ -1,6 +1,10 @@
 <?php 
 require 'libs/functions.php';
 
+if (!isset($_SESSION['zalogowany'])) {
+    header("Location: index.php");
+}
+
 
 $pdo = get_connection();
 $id=$_GET['id'];
