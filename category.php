@@ -21,8 +21,12 @@ $rows = change_category($wallpaperCategory);
         <div class="categories-container">
             <?php
             foreach ($categories as $category) {
-                $categoryName = $category['name'];        
-                echo "<a class='btn btn-sm filter-button' style='width: fit-content;' href='category.php?category=$categoryName' type='button' >$categoryName</a>";  
+                $categoryName = $category['name'];
+                if ($categoryName == $wallpaperCategory) {     
+                echo "<a class='btn btn-sm filter-button active-class' style='width: fit-content;' href='category.php?category=$categoryName' type='button' >$categoryName</a>";  
+                } else {
+                echo "<a class='btn btn-sm filter-button' style='width: fit-content;' href='category.php?category=$categoryName' type='button' >$categoryName</a>";
+                }
             }
             ?>
             </div>

@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require 'libs/functions.php';
 
 if (!isset($_SESSION['zalogowany'])) {
@@ -39,17 +41,18 @@ if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
                 $sql = "INSERT INTO wallpapers
                 VALUES (null, '$wallpaper_name','$wallpaper_category','$wallpaper_description','$img_resolution','$wallpaper_size','$img_upload_path','$upload_date')";
                 $rows = $pdo->query($sql);
-				echo "Succesfully uploaded!";
+				$_SESSION['success'] = "<span style='color: green'>Dodano Tapetę!</span>";
+                header("Location: list.php?list=wallpapers");
 			} 
             else {
-				$em = "You can't upload files of this type";
-		        header("Location: index.php?error=$em");
+                $_SESSION['error'] = "<span style='color: red'>Nieprawidłowy typ pliku!</span>";
+                header("Location: list.php?list=wallpapers");
 			}
         
         }
     } else {
-        $em = "Unknown error occured!";
-        header("Location: index.php?error=$em");
+        $_SESSION['error'] = "<span style='color: red'>Błąd!</span>";
+        header("Location: list.php?list=wallpapers");
     }
 
 } 
@@ -62,6 +65,8 @@ if (isset($_POST['submitCategory']) && isset($_POST['newCategory'])) {
     $sql = "INSERT INTO categories
                 VALUES (null, '$category_name', '$date')";
                 $rows = $pdo->query($sql);
+                $_SESSION['success'] = "<span style='color: green'>Dodano kategorię!</span>";
+                header("Location: list.php?list=categories");
 } 
 
 if (isset($_POST['submitUser']) && isset($_POST['login'])) {
@@ -70,5 +75,9 @@ if (isset($_POST['submitUser']) && isset($_POST['login'])) {
     $join_date = date("Y-m-d H:i:s");
     $sql = "INSERT INTO users VALUES (null, '$login', '$password', '$join_date')";
                 $rows = $pdo->query($sql);
-				echo "New user added!";
-} 
+				$_SESSION['success'] = "<span style='color: green'>Dodano Użytkownika!</span>";
+                header("Location: list.php?list=users");
+} else {
+    $_SESSION['error'] = "<span style='color: red'>Błąd!</span>";
+    header("Location: list.php?list=users");
+}

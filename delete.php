@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'libs/functions.php';
 
 if (!isset($_SESSION['zalogowany'])) {
@@ -13,4 +14,15 @@ $item_table = $_GET['list'];
 $sql = "DELETE FROM $item_table WHERE id=$item_id";
 $result = $pdo->query($sql);
 
-echo "Succesfully deleted item";
+if ($item_table === 'wallpapers') {
+    $_SESSION['success'] = "<span style='color: red'>Usunięto tapetę!</span>";
+    header("Location: list.php?list=wallpapers");
+} 
+else if ($item_table === 'users') {
+    $_SESSION['success'] = "<span style='color: red'>Usunięto użytkownika!</span>";
+    header("Location: list.php?list=users");
+} 
+else if ($item_table === 'categories') {
+    $_SESSION['success'] = "<span style='color: red'>Usunięto kategorię!</span>";
+    header("Location: list.php?list=categories");
+}

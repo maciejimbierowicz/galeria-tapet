@@ -1,4 +1,5 @@
 <?php 
+session_start();
 require 'libs/functions.php';
 
 if (!isset($_SESSION['zalogowany'])) {
@@ -15,29 +16,30 @@ if (isset($_POST['submitUser']) && isset($_POST['login'])) {
     $join_date = date("Y-m-d H:i:s");
     $sql = "UPDATE users SET name='$login', password='$password' WHERE id='$id' ";
                 $rows = $pdo->query($sql);
-				echo "User edited succesfully!";
-} else {
-    echo "cos nie dziala";
-}
+				$_SESSION['success'] = "<span style='color: green'>Zaktualizowano dane użytkownika!</span>";
+                header("Location: list.php?list=users");
+} 
 
 if (isset($_POST['submitCategory']) && isset($_POST['newCategory'])) {
     $category_name = $_POST['newCategory'];
     $sql = "UPDATE categories
                 SET name='$category_name'";
                 $rows = $pdo->query($sql);
-				echo "Succesfully added new category!";
-} else {
-    echo "cos nie dziala";
-}
+				$_SESSION['success'] = "<span style='color: green'>Zaktualizowano kategorię!</span>";
+                header("Location: list.php?list=categories");
+} 
 
 if (isset($_POST['submit']) && isset($_POST['wallpaper_name'])) {
     $wallpaper_name = $_POST['wallpaper_name'];
     $wallpaper_description = $_POST['description'];
     $wallpaper_category = $_POST['category'];
-    echo $wallpaper_name;
     $sql = "UPDATE wallpapers SET name='$wallpaper_name', description='$wallpaper_description', category='$wallpaper_category' WHERE id=$id";
     $rows = $pdo->query($sql);
-    echo "Succesfully updated wallpaper!";
-} else {
-echo "cos nie dziala";
-}
+    $_SESSION['success'] = "<span style='color: green'>Zaktualizowano dane tapety!</span>";
+    header("Location: list.php?list=wallpapers");
+} 
+    else {
+        $_SESSION['error'] = "<span style='color: red'>Błąd!</span>";
+        header("Location: list.php?list=wallpapers");
+    }
+

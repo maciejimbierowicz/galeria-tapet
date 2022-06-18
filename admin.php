@@ -26,9 +26,9 @@ if (isset($_GET['list'])) {
 <body>
     <div class="admin-menu">
         <div>
-            <a class='btn btn-default filter-button' href="list.php?list=wallpapers">Tapety</a>
-            <a class='btn btn-default filter-button' href="list.php?list=categories">Kategorie</a>
-            <a class='btn btn-default filter-button' href="list.php?list=users">Użytkownicy</a>
+                <a class= '<?php if ($list == 'wallpapers') {echo "active-class ";} ?>btn btn-sm filter-button' href="list.php?list=wallpapers">Tapety</a>
+                <a class='<?php if ($list == 'categories') {echo "active-class ";} ?>btn btn-sm filter-button' href="list.php?list=categories">Kategorie</a>
+                <a class='<?php if ($list == 'users') {echo "active-class ";} ?>btn btn-sm filter-button' href="list.php?list=users">Użytkownicy</a>
         </div>
     </div>
     <?php
@@ -36,7 +36,7 @@ if (isset($_GET['list'])) {
         echo "<div class='admin-forms'>";
         if ($list === 'wallpapers') {
             echo <<< END
-                <div class="image-upload-form">
+                <div class="upload-form">
                     <form action="upload.php" 
                     method="post"
                     enctype="multipart/form-data">
@@ -57,13 +57,14 @@ if (isset($_GET['list'])) {
 
             echo <<< END
                         </select><br><br>
-                        <input class="btn btn-primary" type='submit' name='submit' value='Upload'>
+                        <input class="btn btn-primary" type='submit' name='submit' value='Dodaj tapetę'>
                     </form>
                 </div>
+                <a href='list.php?list=wallpapers'>Powrót do listy tapet</a>
                 END;
         } else if ($list === 'categories') {
             echo <<<END
-                    <div class="category-form">
+                    <div class="upload-form">
                         <form action="upload.php" method="post">
                         <h3>Dodaj nową kategorię</h3>
                             <p>Nazwa kategorii:</p>
@@ -71,25 +72,28 @@ if (isset($_GET['list'])) {
                             <input class="btn btn-primary" type='submit' name='submitCategory' value='Dodaj kategorię'>
                         </form>
                     </div>
+                    <a href='list.php?list=categories'>Powrót do listy kategorii</a>
             END;
         } else if ($list === 'users') {
             echo <<<END
-                        <div class="user-form">
+                        <div class="upload-form">
                         <form action="upload.php" method="post">
                         <h3>Dodaj nowego użytkownika</h3>
                             <p>Login:</p>
                             <input type="text" name="login" required><br>
                             <p>Hasło:</p>
                             <input type="text" name="password" required><br>
-                            <input class="btn btn-primary" type='submit' name='submitUser' value='Dodaj nowego użytkownika'>
+                            <input class="btn btn-primary" type='submit' name='submitUser' value='Dodaj użytkownika'>
                         </form>
                         </div>
+                        <a href='list.php?list=users'>Powrót do listy użytkowników</a>
             END;
         }
     echo "</div>";
     }
 
     ?>
+
 
 
     <?php

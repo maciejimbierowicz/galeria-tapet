@@ -1,3 +1,4 @@
+
 <div class="col-md-5 text">
     <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -16,6 +17,7 @@
                         </div>
 
                         <label><i class="fas fa-key"></i>Hasło</label>
+                   
                         <div>
                             <input type="password" placeholder="Password" name="password" required />
                         </div>

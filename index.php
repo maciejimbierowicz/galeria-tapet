@@ -4,6 +4,7 @@ require 'libs/functions.php';
 require 'layout/header.php';
 
 
+
 $categories = get_categories();
 $category = "";
 $rows = change_category($category);
@@ -30,8 +31,9 @@ if (isset($_POST['login'])) {
         unset($_SESSION['blad']);
         header("Location: index.php");
     } else {
-        $_SESSION['blad'] = '<span color:"red">Nieprawidlowe Haslo!</span>';
+        $_SESSION['blad'] = '<span style="color:red">Nieprawidlowy login lub hasło!</span>';
         unset($_SESSION['zalogowany']);
+        header("Location: index.php");
     }
 }
 ?>
@@ -51,12 +53,6 @@ if (isset($_POST['login'])) {
 </head>
 
 <body>
-    <?php
-    if (isset($_SESSION['blad'])) {
-        echo $_SESSION['blad'];
-        unset($_SESSION['blad']);
-    }
-    ?>
 
     <div class="category-button container">
         <div class="row">
