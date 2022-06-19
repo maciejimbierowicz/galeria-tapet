@@ -23,7 +23,7 @@ if (isset($_POST['submitUser']) && isset($_POST['login'])) {
 if (isset($_POST['submitCategory']) && isset($_POST['newCategory'])) {
     $category_name = $_POST['newCategory'];
     $sql = "UPDATE categories
-                SET name='$category_name'";
+                SET name='$category_name' WHERE id=$id";
                 $rows = $pdo->query($sql);
 				$_SESSION['success'] = "<span style='color: green'>Zaktualizowano kategorię!</span>";
                 header("Location: list.php?list=categories");

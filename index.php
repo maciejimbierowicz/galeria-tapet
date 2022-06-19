@@ -31,7 +31,7 @@ if (isset($_POST['login'])) {
         unset($_SESSION['blad']);
         header("Location: index.php");
     } else {
-        $_SESSION['blad'] = '<span style="color:red">Nieprawidlowy login lub hasło!</span>';
+        $_SESSION['error'] = '<span style="color:red">Nieprawidlowy login lub hasło!</span>';
         unset($_SESSION['zalogowany']);
         header("Location: index.php");
     }
@@ -86,6 +86,7 @@ if (isset($_POST['login'])) {
                     $resolution = get_resolution($url);
                     $idLink = 'wallpaper.php?id=' . $item['id'];
                     $file_size = format_size(filesize($url));
+
 
                     echo "<div class='col-lg-3 col-md-4 col-12 mb-5'>";
                     echo "<a class='d-block mb-1 h-60' href='$idLink'><img src='$url' class='img-fluid gallery-image' alt='gallery'></a>";

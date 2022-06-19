@@ -78,7 +78,7 @@ $rows = $result->fetchAll();
             echo "<td><a href='wallpaper.php?id=$id'>$name</a></td>";
             echo "<td>
                 <div class='btn-group text-lg-start'>
-                    <a class='btn btn-sm btn-secondary action-button' style='width: fit-content' href='edit.php?id=$id&list=$list'>Edytuj</a>
+                    <a class='btn btn-sm btn-secondary action-button' href='edit.php?id=$id&list=$list'>Edytuj</a>
                     <a class='btn btn-sm btn-danger action-button delete-button' data-confirm='Czy na pewno chcesz usunąć ten element?' style='width:fit-content' href='delete.php?id=$id&list=$list'>Usuń</a>
                     </div>
                     </td>";

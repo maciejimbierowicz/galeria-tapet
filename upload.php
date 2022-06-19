@@ -3,9 +3,9 @@ session_start();
 
 require 'libs/functions.php';
 
-if (!isset($_SESSION['zalogowany'])) {
-    header("Location: index.php");
-}
+// if (!isset($_SESSION['zalogowany'])) {
+//     header("Location: index.php");
+// }
 
 $pdo = get_connection();
 
@@ -23,9 +23,9 @@ if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
 
     $error = $_FILES['my_image']['error'];
     if($error === 0) {
-        if($img_size > 125000) {
-            $em = "Sorry, your file is too large";
-            header("Location: index.php?error=$em");
+        if($img_size > 10000000) {
+            $_SESSION['error'] = "Plik jest za duży!";
+            header("Location: index.php");
         } else {
             $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
 			$img_ex_lc = strtolower($img_ex);
@@ -37,7 +37,7 @@ if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
 				$img_upload_path = 'img/'.$new_img_name;
 				move_uploaded_file($tmp_name, $img_upload_path);
                 $img_resolution = get_resolution($img_upload_path);
-
+                
                 $sql = "INSERT INTO wallpapers
                 VALUES (null, '$wallpaper_name','$wallpaper_category','$wallpaper_description','$img_resolution','$wallpaper_size','$img_upload_path','$upload_date')";
                 $rows = $pdo->query($sql);
@@ -46,19 +46,19 @@ if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
 			} 
             else {
                 $_SESSION['error'] = "<span style='color: red'>Nieprawidłowy typ pliku!</span>";
-                header("Location: list.php?list=wallpapers");
+                header("Location: index.php");
 			}
         
         }
     } else {
         $_SESSION['error'] = "<span style='color: red'>Błąd!</span>";
-        header("Location: list.php?list=wallpapers");
+        header("Location: index.php");
     }
 
 } 
 
 
-if (isset($_POST['submitCategory']) && isset($_POST['newCategory'])) {
+else if (isset($_POST['submitCategory']) && isset($_POST['newCategory'])) {
     $category_name = $_POST['newCategory'];
     $date = date("Y-m-d H:i:s");
     echo $category_name;
@@ -69,7 +69,7 @@ if (isset($_POST['submitCategory']) && isset($_POST['newCategory'])) {
                 header("Location: list.php?list=categories");
 } 
 
-if (isset($_POST['submitUser']) && isset($_POST['login'])) {
+else if (isset($_POST['submitUser']) && isset($_POST['login'])) {
     $login = $_POST['login'];
     $password = $_POST['password'];
     $join_date = date("Y-m-d H:i:s");
@@ -77,7 +77,9 @@ if (isset($_POST['submitUser']) && isset($_POST['login'])) {
                 $rows = $pdo->query($sql);
 				$_SESSION['success'] = "<span style='color: green'>Dodano Użytkownika!</span>";
                 header("Location: list.php?list=users");
-} else {
+} 
+
+else {
     $_SESSION['error'] = "<span style='color: red'>Błąd!</span>";
     header("Location: list.php?list=users");
 }

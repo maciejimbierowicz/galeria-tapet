@@ -35,7 +35,7 @@ $rows = change_category($wallpaperCategory);
 <?php
 
 
-$results_per_page = 5;
+$results_per_page = 20;
 $number_of_results = count($rows);
 
 $number_of_pages = ceil($number_of_results / $results_per_page);

@@ -294,18 +294,54 @@ form p {
     margin-bottom: 0;
 }
 
-@media screen and (max-width: 820px) {
+
+.wallpaper-description .btn {
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 1020px) {
     .photo-container {
         margin-left: 0;
     }
 
+
+    .page-navigation {
+        margin-right: 20px;
+    }
+
+    
+    .wallpaper-description {
+        font-size: 12px;
+
+    }
+
+    .wallpaper-description h3 {
+        font-size: 15px;
+        font-weight: bold;
+        display:inline-block;
+        margin-right: 5px;
+    }
+
+
+    .product-section .container-fluid {
+        padding-right: 0px;
+    }
+
+}
+
+@media screen and (max-width: 800px) {
     .paging-link {
         display: none;
 
     }
 
-    .page-navigation {
-        margin-right: 20px;
+    .table-scrollable {
+        overflow: auto;
+    }
+
+
+    .styled-table .btn {
+        display: block
     }
 
     .admin-forms {
@@ -320,27 +356,6 @@ form p {
         width: 100%;
         height: auto
     }
-
-    .wallpaper-description {
-        font-size: 12px;
-
-    }
-
-    .wallpaper-description h3 {
-        font-size: 15px;
-        font-weight: bold;
-        display:inline-block;
-        margin-right: 5px;
-    }
-
-    .wallpaper-description .btn {
-        margin-bottom: 20px;
-    }
-
-    .product-section .container-fluid {
-        padding-right: 0px;
-    }
-
 }
 
 
