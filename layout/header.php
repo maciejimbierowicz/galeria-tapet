@@ -3,25 +3,9 @@ session_start();
 require 'login.php';
 ?>
 
+<?php 
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <title>Galeria Tapet</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link href="css/styles.css" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Pacifico&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
-
-
-</head>
-
-<body>
-
-<?php if (isset($_SESSION['error'])) {
+if (isset($_SESSION['error'])) {
         echo $_SESSION['error'];
         unset($_SESSION['error']);
     } 
@@ -37,7 +21,7 @@ require 'login.php';
         Galeria Tapet
       </a>
       <button class="navbar-toggler collapsed logo-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars"></i>
+      &#9776;
       </button>
       <div class="navbar-collapse collapse" id="navbarSupportedContent" style="">
         <ul class="navbar-nav ms-auto">
@@ -58,3 +42,6 @@ require 'login.php';
       </div>
     </div>
   </nav>
+
+  </body>
+  </html>

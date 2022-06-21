@@ -3,8 +3,26 @@
     background-color: #FFFFFF;
     color: black;
     font-family: 'Roboto', sans-serif;
-    
-    
+}
+
+
+footer {
+    height: 170px;
+    background-color: grey;
+    font-size: 16px;
+    font-style: bold;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* ------------------ NAVBAR SECTION ---------------------*/
+
+.navbar {
+    background-color: black;
+    padding: 20px 7px 0 7px;
+    padding-bottom: 20px;
 }
 
 .navbar-brand {
@@ -12,14 +30,10 @@
     font-family: 'Italiana', serif;
 }
 
-.wallpaper-name {
-    color: black;
-}
+/* ----------------- GALLERY SECTION ---------------- */
 
-.navbar {
-    background-color: black;
-    padding: 20px 7px 0 7px;
-    padding-bottom: 20px;
+.categories-container {
+    margin-top: 30px;
 }
 
 .category-button {
@@ -28,26 +42,26 @@
 }
 
 
-
 .filter-button
-{
-    font-size: 16px;
-    border: 1px solid white;
+{   
+    font-size: 18px;
+    padding-right: 5px;
+    border: 1px solid black;
     border-radius: 5px;
     text-align: center;
-    color: #009999;
+    color: black;
     margin-right: 10px;
     margin-bottom: 30px;
 
 }
 .filter-button:hover
 {
-    font-size: 16px;
-    border: 1px solid #FFA500;
+    font-size: 18px;
+    border: 1px solid black;
     border-radius: 5px;
     text-align: center;
     color: #ffffff;
-    background-color: #FFA500;
+    background-color: black;
 
 }
 
@@ -70,37 +84,51 @@
     
 }
 
-/* ----------------------- MODAL SECTION  -----------------------*/
-.intro{
-    background-color: #ddd;
-    height: 660px;
-    display:flex;
-    justify-content: center;
 
+.gallery-title
+{
+    font-family: 'Italiana', serif;
+    font-size: 6rem;
+    color: black;
+    text-align: center;
+    padding-top:70px
+    
 }
-.row{
-    width: 100%;
+
+.wallpaper-name {
+    color: black;
 }
-.text .fc{
-    letter-spacing: 3px;
-    font-family: 'Aladin', cursive;
-    font-size: 45px;
-    position: inline;
-    margin-top: 220px;
-    padding-left: 210px;
+
+
+/*------------------ WALLPAPER SECTION ------------------*/
+
+
+.product-section {
+    text-align: center
 }
-input[type="text"],
-input[type="password"]{
-    width: 240px;
-    height: 30px;
-    outline: none;
-    border: 0.5px solid #222;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    margin-top: 0px;
-    font-size: 16px;
-    padding-left: 10px;
+
+.product-section img {
+    max-height: 85%; 
+    min-width: 95%
 }
+
+.wallpaper-description {
+    background-color: rgb(214, 210, 210);
+    min-height: 85%;
+    
+}
+
+.wallpaper-description .btn {
+    margin-bottom: 20px;
+}
+
+.wallpaper-title {
+    padding-left: 20px;
+}
+
+
+/* ----------------------- LOGIN SECTION  -----------------------*/
+
 .button-login{
     padding-top: 8px;
     padding-bottom: 8px;
@@ -113,9 +141,37 @@ input[type="password"]{
     margin-left: 210px;
     margin-top: 30px;
 }
+
 .button-login:hover{
     box-shadow: 5px 5px 10px #999;
     color: #fff;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+}
+
+.intro{
+    background-color: #ddd;
+    height: 660px;
+    display:flex;
+    justify-content: center;
+
+}
+
+input[type="text"],
+input[type="password"]{
+    width: 240px;
+    height: 30px;
+    outline: none;
+    border: 0.5px solid #222;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    font-size: 16px;
+    padding-left: 10px;
 }
 
 .modal-title{
@@ -132,6 +188,19 @@ input[type="password"]{
     margin-bottom: 5px;
 }
 
+.modal-header {
+    justify-content: center;
+}
+
+
+
+/* --------------- ADMIN FORMS SECTION -------------- */
+
+.active-class {
+    background-color: black;
+    color: white;
+}
+
 .admin-menu {
     padding-top: 20px;
     margin-bottom: 40px;
@@ -145,34 +214,58 @@ input[type="password"]{
     width: 300px;
 }
 
-.modal-header {
-    justify-content: center;
-}
-
-.close {
-    position: absolute;
-    right: 20px;
-    top: 15px;
-}
-
-
-.page-navigation {
-    width: fit-content;
-}
-
-/* TABLE\ */
-
-
-.table {
+.admin-forms {
+    width:50%;
     margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 80px;
+    text-align: center;
+    
 }
+
+.admin-forms h3 {
+    padding-bottom: 15px;
+}
+
+form p {
+    margin-bottom: 0;
+}
+
+.upload-form {
+    width: 60%;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: #6D9886;
+    padding-top: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.upload-form .btn {
+    margin-bottom: 10px;
+}
+
+
+/* ---------------------- ADMIN TABLES SECTION ---------------------- */
+
+.action-button {
+    width: fit-content;
+    font-size: 12px;
+} 
+
+.btn-group {
+    display: flex;
+}
+
 
 .styled-table {
+    border: 1px solid #ccc;
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 0.9em;
     font-family: sans-serif;
+    padding: 5px;
     min-width: 400px;
+    max-width: 70%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -199,32 +292,30 @@ input[type="password"]{
     border-bottom: 2px solid #009879;
 }
 
-
-.btn-group {
-    display: flex;
+.table {
+    margin: 0 auto;
 }
-.action-button {
-    width: fit-content;
-    font-size: 12px;
-} 
 
 
-/* PAGING STYLE */
+
+/* ------------------------PAGING SECTION --------------------- */
 
 #active {
     background-color: blue;
+}
+
+.add-button {
+    margin-bottom: 20px;
 }
 
 .page-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 30px;
     padding-bottom: 70px
 }
 
-.paging-link:hover {
-    background-color:rgba(0, 0, 0, 0.15);
-}
 
 .paging-link {
     display: flex;
@@ -238,75 +329,34 @@ input[type="password"]{
     margin: 10px;
     border-radius: 5px;
     text-decoration: none;
-    transition: all 0.3s ease; }
-
-/* WALLPAPER SITE */
-
-.product-section {
-    text-align: center
+    transition: all 0.3s ease; 
 }
 
-.wallpaper-description {
-    background-color: rgb(214, 210, 210);
-    min-height: 85%;
+.paging-link:hover {
+    background-color:rgba(0, 0, 0, 0.15);
+}
+
+.page-navigation {
+    width: fit-content;
+}
+
+
+
+
+/* ------------------ MEDIUM SCREEN ----------------------- */
+
+@media screen and (max-width: 1000px) {
     
-}
-
-.product-section img {
-    max-height: 85%; 
-    min-width: 95%
-}
-
-footer {
-    height: 170px;
-    background-color: grey;
-    font-size: 16px;
-    font-style: bold;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.admin-forms {
-    width:50%;
-    margin: 0 auto;
-    padding-top: 20px;
-    padding-bottom: 80px;
-    text-align: center;
-    
-}
-
-
-.upload-form {
-    width: 60%;
-    margin: 0 auto;
-    border-radius: 5px;
-    background-color: #6D9886;
-    padding-top: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.upload-form .btn {
-    margin-bottom: 10px;
-}
-
-form p {
-    margin-bottom: 0;
-}
-
-
-.wallpaper-description .btn {
-    margin-bottom: 20px;
-}
-
-@media screen and (max-width: 1020px) {
     .photo-container {
         margin-left: 0;
     }
 
-
     .page-navigation {
         margin-right: 20px;
+    }
+
+    .product-section .container-fluid {
+        padding-right: 0px;
     }
 
     
@@ -322,98 +372,43 @@ form p {
         margin-right: 5px;
     }
 
-
-    .product-section .container-fluid {
-        padding-right: 0px;
+    .wallpaper-description {
+        max-width: 100%;
     }
+
+    .wallpaper-title {
+        padding-left: auto;
+    }
+    
 
 }
 
-@media screen and (max-width: 800px) {
-    .paging-link {
-        display: none;
 
-    }
+/* --------------------- SMALL SCREEN -------------------- */
 
-    .table-scrollable {
-        overflow: auto;
-    }
-
-
-    .styled-table .btn {
-        display: block
-    }
+@media screen and (max-width: 700px) {
 
     .admin-forms {
         width: 95%;
     }
 
+    .gallery img {
+        width: 100%;
+        height: 300px;
+    }
+
+    .paging-link {
+        display: none;
+
+    }
+
     .upload-form {
         width: auto
     }
-  
-    .gallery img {
-        width: 100%;
-        height: auto
-    }
-}
-
-
-.custab {
-    max-width: 70%;
-    border: 1px solid #ccc;
-    padding: 5px;
-    margin: 5% 0;
-    box-shadow: 3px 3px 2px #ccc;
-    transition: 0.5s;
-}
-
-.custab:hover {
-    box-shadow: 3px 3px 0px transparent;
-    transition: 0.5s;
-}
-
-
-
-
-.admin-forms h3 {
-    padding-bottom: 15px;
-}
-
-.filter-button
-{   
-    font-size: 18px;
-    border: 1px solid black;
-    border-radius: 5px;
-    text-align: center;
-    color: black;
-    margin-bottom: 30px;
-
-}
-.filter-button:hover
-{
-    font-size: 18px;
-    border: 1px solid black;
-    border-radius: 5px;
-    text-align: center;
-    color: #ffffff;
-    background-color: black;
 
 }
 
-.gallery-title
-{
-    font-family: 'Italiana', serif;
-    font-size: 6rem;
-    color: black;
-    text-align: center;
-    padding-top:70px
-    
-}
 
-.categories-container {
-    margin-top: 30px;
-}
 
 #error-message {
     color: red;
@@ -421,11 +416,7 @@ form p {
 }
 
 
-/* FORMS */
 
-.active-class {
-    background-color: black;
-    color: white;
-}
+
 
 

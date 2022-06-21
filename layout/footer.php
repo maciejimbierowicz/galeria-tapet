@@ -1,5 +1,5 @@
 <footer>
-    <p>Copyright by Maciej</p>
+    <p>Copyright by Maciej Imbierowicz</p>
 </footer>
 </body>
 <script src="js/index.js"></script>

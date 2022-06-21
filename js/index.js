@@ -8,12 +8,9 @@ document.addEventListener("click", function (e) {
     }
 })
 
-function showModal(){
-$('#myModal').on('shown.bs.modal', function () {
-    $('#myInput').trigger('focus')
-  })}
 
 
+// DELETE CONFIRMATION
   let deleteLinks = document.querySelectorAll('.delete-button');
 
   for (var i = 0; i < deleteLinks.length; i++) {
@@ -28,17 +25,3 @@ $('#myModal').on('shown.bs.modal', function () {
     });
   }
 
-
-  let adminButtons = document.querySelectorAll('.admin-menu a');
-function addActiveClass(e) {
-    let elems = document.querySelectorAll(".active-class");
-    [].forEach.call(elems, function(el) {
-      el.classList.remove("active-class");
-    });
-    e.target.className = "active-class";
-  }
-
-  
-
-  adminButtons.addEventListener('click', addActiveClass)
-  modalButton.addEventListener("click", showModal)

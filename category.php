@@ -1,3 +1,20 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <title>Galeria Tapet</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="css/styles.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Pacifico&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body>
+
 <?php
 require 'layout/header.php';
 require 'libs/functions.php';
@@ -8,16 +25,14 @@ $pdo = get_connection();
 
 $rows = change_category($wallpaperCategory);
 
-
 ?>
-
 
 <div class="category-button container">
         <div class="row">
         <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <h1 class="gallery-title">Galeria Tapet</h1>
         </div>
-        
+                
         <div class="categories-container">
             <?php
             foreach ($categories as $category) {
@@ -32,12 +47,11 @@ $rows = change_category($wallpaperCategory);
             </div>
         </div>
     </div>
-<?php
 
+<?php
 
 $results_per_page = 20;
 $number_of_results = count($rows);
-
 $number_of_pages = ceil($number_of_results / $results_per_page);
 
 if (!isset($_GET['page'])) {
@@ -50,8 +64,6 @@ $starting_limit_number = ($page - 1) * $results_per_page;
 
 $sql = "SELECT * FROM wallpapers WHERE category= '$wallpaperCategory' LIMIT " . $starting_limit_number . ',' . $results_per_page;
 
-
-$pdo = get_connection();
 $result = $pdo->query($sql);
 $rows = $result->fetchAll();
 
@@ -71,16 +83,12 @@ $rows = $result->fetchAll();
 
                 echo "<div class='col-lg-3 col-md-4 col-12 mb-5'>";
                 echo "<a class='d-block h-60' href='$idLink'><img src='$url' class='img-fluid gallery-image' alt='gallery'></a>";
-                echo <<<END
-                    <div class="d-flex justify-content-between">
-                    <span class="wallpaper-name">$name</span>
-                        
-                    </div>
-                    END;
+                echo  "<div class='d-flex justify-content-between'><span class='wallpaper-name'>$name</span></div>";
                 echo "</div>";
             }
             ?>
         </div>
+
         <div class='page-container'>
             <?php
             $active_page = $page;

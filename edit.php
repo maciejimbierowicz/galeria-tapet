@@ -1,13 +1,9 @@
 <?php 
 require 'libs/functions.php';
-require 'layout/header.php';
-
-if (!isset($_SESSION['zalogowany'])) {
-    header("Location: index.php");
-}
 
 $pdo = get_connection();
 $categories = get_categories();
+
 $list = $_GET['list'];
 $id = $_GET['id'];
 $sql = "SELECT * FROM $list WHERE id=$id";
@@ -17,6 +13,32 @@ $item = $result->fetch();
 $item_name = $item['name'];
 
 ?>
+
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <title>Galeria Tapet</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="css/styles.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Pacifico&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+<?php 
+require 'layout/header.php';
+if (!isset($_SESSION['zalogowany'])) {
+    header("Location: index.php");
+}
+?>
+?>
+
 <div class="admin-menu">
         <div>
                 <a class= '<?php if ($list == 'wallpapers') {echo "active-class ";} ?>btn btn-sm filter-button' href="list.php?list=wallpapers">Tapety</a>
@@ -24,8 +46,8 @@ $item_name = $item['name'];
                 <a class='<?php if ($list == 'users') {echo "active-class ";} ?>btn btn-sm filter-button' href="list.php?list=users">Użytkownicy</a>
         </div>
     </div>
-<?php
 
+<?php
 echo "<div class='admin-forms'>";
 if ($list === 'wallpapers') {
     $item_description = $item['description'];

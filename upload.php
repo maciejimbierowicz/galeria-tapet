@@ -3,13 +3,13 @@ session_start();
 
 require 'libs/functions.php';
 
-// if (!isset($_SESSION['zalogowany'])) {
-//     header("Location: index.php");
-// }
+if (!isset($_SESSION['zalogowany'])) {
+    header("Location: index.php");
+}
 
 $pdo = get_connection();
 
-
+// WALLPAPER UPLOAD
 if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
     $img_name = $_FILES['my_image']['name'];
     $img_size = $_FILES['my_image']['size'];
@@ -46,7 +46,7 @@ if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
 			} 
             else {
                 $_SESSION['error'] = "<span style='color: red'>Nieprawidłowy typ pliku!</span>";
-                header("Location: index.php");
+                header("Location: list.php?list=wallpapers");
 			}
         
         }
@@ -57,7 +57,7 @@ if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
 
 } 
 
-
+// ADD CATEGORY
 else if (isset($_POST['submitCategory']) && isset($_POST['newCategory'])) {
     $category_name = $_POST['newCategory'];
     $date = date("Y-m-d H:i:s");
@@ -69,6 +69,7 @@ else if (isset($_POST['submitCategory']) && isset($_POST['newCategory'])) {
                 header("Location: list.php?list=categories");
 } 
 
+// ADD USER
 else if (isset($_POST['submitUser']) && isset($_POST['login'])) {
     $login = $_POST['login'];
     $password = $_POST['password'];

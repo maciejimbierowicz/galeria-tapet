@@ -1,7 +1,5 @@
 <?php
 
-
-
 function get_connection() {
     $config = require 'connect.php';
     return new PDO(
@@ -10,7 +8,6 @@ function get_connection() {
         $config['database_pass']
     );
 }
-
 
 function get_categories() {
     $pdo = get_connection();
@@ -31,7 +28,6 @@ function change_category($category) {
     $rows = $result->fetchAll();
     return $rows;
 }
-
 
 function format_size($size) {
     $sizes = array(" Bytes", " KB", " MB", " GB", " TB", " PB", " EB", " ZB", " YB");

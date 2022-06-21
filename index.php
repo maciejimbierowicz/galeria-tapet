@@ -1,22 +1,42 @@
 <?php
 
 require 'libs/functions.php';
-require 'layout/header.php';
-
-
 
 $categories = get_categories();
 $category = "";
 $rows = change_category($category);
 $pdo = get_connection();
 
-$najnowszeTapety = $pdo->query('SELECT * FROM wallpapers ORDER BY id DESC LIMIT 16');
-$najnowszeRows = $najnowszeTapety->fetchAll();
+$latestWallpapers = $pdo->query('SELECT * FROM wallpapers ORDER BY id DESC LIMIT 16');
+$latestRows = $latestWallpapers->fetchAll();
 
-$najwiekszaRozdzielczosc = $pdo->query('SELECT * FROM wallpapers ORDER BY resolution DESC LIMIT 16');
-$rozdzielczoscRows = $najwiekszaRozdzielczosc->fetchAll();
+$highestQuality = $pdo->query('SELECT * FROM wallpapers ORDER BY resolution DESC LIMIT 16');
+$qualityRows = $highestQuality->fetchAll();
 
 
+?>
+
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <title>Galeria Tapet</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="css/styles.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Pacifico&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+<?php
+require 'layout/header.php';
+
+// Login
 if (isset($_POST['login'])) {
     $login = $_POST['login'];
     $password = $_POST['password'];
@@ -28,7 +48,7 @@ if (isset($_POST['login'])) {
 
     if (count($wiersz) > 0) {
         $_SESSION['zalogowany'] = true;
-        unset($_SESSION['blad']);
+        unset($_SESSION['error']);
         header("Location: index.php");
     } else {
         $_SESSION['error'] = '<span style="color:red">Nieprawidlowy login lub hasło!</span>';
@@ -37,22 +57,6 @@ if (isset($_POST['login'])) {
     }
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Galeria Tapet</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="css/styles.css" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-
-
-</head>
-
-<body>
 
     <div class="category-button container">
         <div class="row">
@@ -73,13 +77,12 @@ if (isset($_POST['login'])) {
     
 
     <section class='gallery'>
-
         <div class='container-fluid mb-5 pb-5'>
             <h2 class="text-lg-start mt-4 mb-0">Najnowsze Tapety</h2>
             <hr class="mt-2 mb-3">
             <div class='row text-center text-lg-start photo-container'>
                 <?php
-                foreach ($najnowszeRows as $item) {
+                foreach ($latestRows as $item) {
                     $id = $item['id'];
                     $url = $item['url'];
                     $name = $item['name'];
@@ -91,7 +94,7 @@ if (isset($_POST['login'])) {
                     echo "<div class='col-lg-3 col-md-4 col-12 mb-5'>";
                     echo "<a class='d-block mb-1 h-60' href='$idLink'><img src='$url' class='img-fluid gallery-image' alt='gallery'></a>";
                     echo <<<END
-                    <div class="d-flex justify-content-betweentext-center">
+                    <div class="d-flex justify-content-between text-center">
                         <span class="wallpaper-name">$name</span>
                     </div>
                     END;
@@ -107,20 +110,17 @@ if (isset($_POST['login'])) {
             <hr class="mt-2 mb-3">
             <div class='row text-center text-lg-start photo-container'>
                 <?php
-                foreach ($rozdzielczoscRows as $wallpaper) {
-                    $url = $wallpaper['url'];
-                    $name = $wallpaper['name'];
+                foreach ($qualityRows as $item) {
+                    $url = $item['url'];
+                    $name = $item['name'];
                     $resolution = get_resolution($url);
-                    $idLink = 'wallpaper.php?id=' . $wallpaper['id'];
-
-
+                    $idLink = 'wallpaper.php?id=' . $item['id'];
 
                     echo "<div class='col-lg-3 col-md-4 col-12 mb-5'>";
                     echo "<a class='d-block mb-1 h-60' href='$idLink'><img src='$url' class='img-fluid gallery-image' alt='gallery'></a>";
                     echo <<<END
                     <div class="d-flex justify-content-between">
-                    <span class="wallpaper-name">$name</span>
-                        
+                    <span class="wallpaper-name">$name</span>                       
                     </div>
                     END;
                     echo "</div>";
@@ -130,10 +130,3 @@ if (isset($_POST['login'])) {
     </section>
 
     <?php require 'layout/footer.php'; ?>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-
-</html>
