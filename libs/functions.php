@@ -20,17 +20,20 @@ function change_category($category) {
     $pdo = get_connection();
     if ($category == "") {
         $sql = 'SELECT * FROM wallpapers';
+        $result = $pdo->query($sql);
     }
     else {
-        $sql = "SELECT * FROM wallpapers WHERE category = '$category'";
+        $sql = "SELECT * FROM wallpapers WHERE category = :category";
+        $result = $pdo->prepare($sql);
+        $result->bindParam(':category', $category, PDO::PARAM_STR);
+        $result->execute(); 
     }
-    $result = $pdo->query($sql);
     $rows = $result->fetchAll();
     return $rows;
 }
 
 function format_size($size) {
-    $sizes = array(" Bytes", " KB", " MB", " GB", " TB", " PB", " EB", " ZB", " YB");
+    $sizes = [" Bytes", " KB", " MB", " GB", " TB", " PB", " EB", " ZB", " YB"];
     if ($size == 0) { return('n/a'); } else {
     return (round($size/pow(1024, ($i = floor(log($size, 1024)))), 2) . $sizes[$i]); }
 }

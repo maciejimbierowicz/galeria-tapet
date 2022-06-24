@@ -345,7 +345,7 @@ form p {
 
 /* ------------------ MEDIUM SCREEN ----------------------- */
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1030px) {
     
     .photo-container {
         margin-left: 0;

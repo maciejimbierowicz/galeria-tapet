@@ -1,5 +1,5 @@
 let categoryButton = document.querySelector('.category-button');
-let modalButton = document.querySelector('#modal-button')
+
 
 document.addEventListener("click", function (e) {
     if (e.target.classList.contains("gallery-item")) {
@@ -9,8 +9,13 @@ document.addEventListener("click", function (e) {
 })
 
 
+function showModal() {
+  document.querySelector('.modal').modal('toggle');
+}
+
 
 // DELETE CONFIRMATION
+
   let deleteLinks = document.querySelectorAll('.delete-button');
 
   for (var i = 0; i < deleteLinks.length; i++) {

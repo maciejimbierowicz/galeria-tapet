@@ -10,9 +10,15 @@ $pdo = get_connection();
 
 $item_id = $_GET['id'];
 $item_table = $_GET['list'];
+$table_list = ['categories', 'users', 'wallpapers'];
 
-$sql = "DELETE FROM $item_table WHERE id=$item_id";
-$result = $pdo->query($sql);
+if (in_array($item_table, $table_list)) {
+$sql = "DELETE FROM $item_table WHERE id= :item_id";
+$result = $pdo->prepare($sql);
+$result->bindParam(':item_id', $item_id, PDO::PARAM_INT);
+$result->execute();
+}
+
 
 if ($item_table === 'wallpapers') {
     $_SESSION['success'] = "<span style='color: red'>Usunięto tapetę!</span>";
