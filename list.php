@@ -49,7 +49,7 @@ if (in_array($list, $listArray)) {
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link href="css/styles.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Pacifico&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&family=Pacifico&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
 
 
 </head>
@@ -68,13 +68,13 @@ if (in_array($list, $listArray)) {
     <div>
       <a class='<?php if ($list == 'wallpapers') {
                   echo "active-class ";
-                } ?>btn btn-sm filter-button' href="list.php?list=wallpapers">Tapety</a>
+                } ?>btn btn-sm admin-filter-button' href="list.php?list=wallpapers">Tapety</a>
       <a class='<?php if ($list == 'categories') {
                   echo "active-class ";
-                } ?>btn btn-sm filter-button' href="list.php?list=categories">Kategorie</a>
+                } ?>btn btn-sm admin-filter-button' href="list.php?list=categories">Kategorie</a>
       <a class='<?php if ($list == 'users') {
                   echo "active-class ";
-                } ?>btn btn-sm filter-button' href="list.php?list=users">Użytkownicy</a>
+                } ?>btn btn-sm admin-filter-button' href="list.php?list=users">Użytkownicy</a>
     </div>
   </div>
 
@@ -153,7 +153,7 @@ if (in_array($list, $listArray)) {
       </table>
 
     </div>
-    <div class='page-container'>
+    <div class='page-container admin-paging'>
       <?php
       $active_page = $page;
       if ($page != 1) {

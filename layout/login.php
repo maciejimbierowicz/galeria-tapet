@@ -26,7 +26,7 @@ session_start();
               <input type="password" placeholder="Password" name="password" required />
             </div>
             <?php
-            if (isset($_SESSION['login_error'])) {
+            if (isset($_SESSION['login_error'])) { // Echo an error if login fails
               echo $_SESSION['login_error'];
               session_unset();
             }

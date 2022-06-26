@@ -13,10 +13,10 @@ $item_table = $_GET['list'];
 $table_list = ['categories', 'users', 'wallpapers'];
 
 if (in_array($item_table, $table_list)) {
-$sql = "DELETE FROM $item_table WHERE id= :item_id";
-$result = $pdo->prepare($sql);
-$result->bindParam(':item_id', $item_id, PDO::PARAM_INT);
-$result->execute();
+    $sql = "DELETE FROM $item_table WHERE id= :item_id";
+    $result = $pdo->prepare($sql);
+    $result->bindParam(':item_id', $item_id, PDO::PARAM_INT);
+    $result->execute();
 }
 
 

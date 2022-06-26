@@ -5,8 +5,9 @@ require 'login.php';
 <nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="index.php">
-      <i class="fas fa-film mr-2"></i>
-      Galeria Tapet
+      <img src="img/logo/logo2.jpg" style="height: 60px">
+      <!-- <i class="fas fa-film mr-2"></i>
+      Galeria Tapet -->
     </a>
     <button class="navbar-toggler collapsed logo-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       &#9776;

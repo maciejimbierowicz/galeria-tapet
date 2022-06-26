@@ -2,10 +2,10 @@
 
 require 'libs/functions.php';
 
-$categories = get_categories();
-$category = "";
-$rows = change_category($category);
 $pdo = get_connection();
+$all_categories = $pdo->query('SELECT * FROM categories');
+$categories = $all_categories->fetchAll();
+
 
 $latestWallpapers = $pdo->query('SELECT * FROM wallpapers ORDER BY id DESC LIMIT 16');
 $latestRows = $latestWallpapers->fetchAll();
@@ -26,7 +26,7 @@ $qualityRows = $highestQuality->fetchAll();
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link href="css/styles.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Pacifico&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&family=Pacifico&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
 
 
 </head>
@@ -48,20 +48,20 @@ $qualityRows = $highestQuality->fetchAll();
     $result->execute();
     $user = $result->fetchAll();
 
-    if (count($user) > 0) {
+    if (count($user) > 0) { // Check if login exists in database
       $db_pass = $user[0]['password'];
 
-      if (password_verify($password, $db_pass)) {
+      if (password_verify($password, $db_pass)) { // Check if password is correct
         $_SESSION['zalogowany'] = true;
         unset($_SESSION['login_error']);
         header("Location: index.php");
-      } else {
+      } else { // Echo incorrect password error
         $_SESSION['login_error'] = '<span style="color:red">Nieprawidlowe hasło!</span>';
         echo '<script type="text/javascript"> $(".modal").modal("show");</script>';
         unset($_SESSION['zalogowany']);
         header("Location: index.php#staticBackdrop");
       }
-    } else {
+    } else { // Echo user not found error
       $_SESSION['login_error'] = '<span style="color:red">Nie znaleziono użytkownika!</span>';
       echo '<script type="text/javascript"> $(".modal").modal("show");</script>';
       unset($_SESSION['zalogowany']);
@@ -75,14 +75,14 @@ $qualityRows = $highestQuality->fetchAll();
   <div class="category-button container">
     <div class="row">
       <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <h1 class="gallery-title">Galeria Tapet</h1>
+        <img src="img/logo/logo.jpg" id="logo">
       </div>
 
       <div class="categories-container">
         <?php
         foreach ($categories as $category) {
           $categoryName = $category['name'];
-          echo "<a class='btn btn-sm filter-button' style='width: fit-content;' href='category.php?category=$categoryName' type='button' >$categoryName</a>";
+          echo "<a class='btn filter-button' style='width: fit-content;  border-radius: 0;' href='category.php?category=$categoryName' type='button' >$categoryName</a>";
         }
         ?>
       </div>
@@ -92,11 +92,10 @@ $qualityRows = $highestQuality->fetchAll();
 
   <section class='gallery'>
     <div class='container-fluid mb-5 pb-5'>
-      <h2 class="text-lg-start mt-4 mb-0">Najnowsze Tapety</h2>
-      <hr class="mt-2 mb-3">
+      <h2 class="text-lg-start mt-4 mb-4">Najnowsze Tapety</h2>
       <div class='row text-center text-lg-start photo-container'>
         <?php
-        foreach ($latestRows as $item) {
+        foreach ($latestRows as $item) { // Show latest wallpapers
           $id = $item['id'];
           $url = $item['url'];
           $name = $item['name'];
@@ -120,11 +119,10 @@ $qualityRows = $highestQuality->fetchAll();
 
 
     <div class='container-fluid'>
-      <h2 class="text-lg-start mt-4 mb-0">Tapety o największej rozdzielczości</h2>
-      <hr class="mt-2 mb-3">
+      <h2 class="text-lg-start mt-4 mb-4">Tapety o największej rozdzielczości</h2>
       <div class='row text-center text-lg-start photo-container'>
         <?php
-        foreach ($qualityRows as $item) {
+        foreach ($qualityRows as $item) { // Show biggest resolution wallpapers
           $url = $item['url'];
           $name = $item['name'];
           $resolution = get_resolution($url);
@@ -146,7 +144,7 @@ $qualityRows = $highestQuality->fetchAll();
   <?php require 'layout/footer.php'; ?>
 
   <script>
-    $(document).ready(function() {
+    $(document).ready(function() { //show modal if login fails
 
       if (window.location.href.indexOf('#staticBackdrop') != -1) {
         $('#staticBackdrop').modal('show');

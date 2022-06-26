@@ -20,8 +20,8 @@ if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
   $upload_date = date("Y-m-d H:i:s");
   $wallpaper_size = format_size($img_size);
   $wallpaper_category = $_POST['category'];
-
   $error = $_FILES['my_image']['error'];
+  
   if ($error === 0) {
     if ($img_size > 10000000) {
       $_SESSION['error'] = "Plik jest za duży!";
@@ -49,7 +49,7 @@ if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
         $result->bindParam(':img_upload_path', $img_upload_path, PDO::PARAM_STR);
         $result->bindParam(':upload_date', $upload_date, PDO::PARAM_STR);
         $result->execute();
-        
+
         $_SESSION['success'] = "<span style='color: green'>Dodano Tapetę!</span>";
         header("Location: list.php?list=wallpapers");
       } else {
@@ -67,7 +67,7 @@ if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
 else if (isset($_POST['submitCategory']) && isset($_POST['newCategory'])) {
   $category_name = filter_var($_POST['newCategory'], FILTER_SANITIZE_SPECIAL_CHARS);
   $date = date("Y-m-d H:i:s");
-  echo $category_name;
+
   $sql = "INSERT INTO categories VALUES (null, :category_name, :date)";
   $result = $pdo->prepare($sql);
   $result->bindParam(':category_name', $category_name, PDO::PARAM_STR);
@@ -83,8 +83,8 @@ else if (isset($_POST['submitUser']) && isset($_POST['login'])) {
   $login = filter_var($_POST['login'], FILTER_SANITIZE_SPECIAL_CHARS);
   $password = $_POST['password'];
   $password = password_hash($password, PASSWORD_DEFAULT);
-
   $join_date = date("Y-m-d H:i:s");
+  
   $sql = "INSERT INTO users VALUES (null, :login, :password, :join_date)";
   $result = $pdo->prepare($sql);
   $result->bindParam(':login', $login, PDO::PARAM_STR);
@@ -95,6 +95,7 @@ else if (isset($_POST['submitUser']) && isset($_POST['login'])) {
 
   $_SESSION['success'] = "<span style='color: green'>Dodano Użytkownika!</span>";
   header("Location: list.php?list=users");
+
 } else {
   $_SESSION['error'] = "<span style='color: red'>Błąd!</span>";
   header("Location: list.php?list=users");

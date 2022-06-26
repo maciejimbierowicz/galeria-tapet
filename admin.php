@@ -8,7 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link href="css/styles.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Pacifico&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&family=Pacifico&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
 
 
 </head>
@@ -23,7 +23,9 @@
     header("Location: index.php");
   }
 
-  $categories = get_categories();
+  $pdo = get_connection();
+  $all_categories = $pdo->query('SELECT * FROM categories');
+  $categories = $all_categories->fetchAll();
 
   if (isset($_GET['list'])) {
     $list = $_GET['list'];
@@ -35,18 +37,18 @@
     <div>
       <a class='<?php if ($list == 'wallpapers') {
                   echo "active-class ";
-                } ?>btn btn-sm filter-button' href="list.php?list=wallpapers">Tapety</a>
+                } ?>btn btn-sm admin-filter-button' href="list.php?list=wallpapers">Tapety</a>
       <a class='<?php if ($list == 'categories') {
                   echo "active-class ";
-                } ?>btn btn-sm filter-button' href="list.php?list=categories">Kategorie</a>
+                } ?>btn btn-sm admin-filter-button' href="list.php?list=categories">Kategorie</a>
       <a class='<?php if ($list == 'users') {
                   echo "active-class ";
-                } ?>btn btn-sm filter-button' href="list.php?list=users">Użytkownicy</a>
+                } ?>btn btn-sm admin-filter-button' href="list.php?list=users">Użytkownicy</a>
     </div>
   </div>
 
   <?php
-  // Image Form
+  // Image Edit Form
   if (isset($_GET['list'])) {
     echo "<div class='admin-forms'>";
     if ($list === 'wallpapers') {
@@ -79,7 +81,7 @@
             END;
     }
 
-    // Category Form
+    // Category Edit Form
     else if ($list === 'categories') {
       echo <<<END
           <div class="upload-form">
@@ -94,7 +96,7 @@
           END;
     }
 
-    // Users Form
+    // Users Edit Form
     else if ($list === 'users') {
       echo <<<END
           <div class="upload-form">

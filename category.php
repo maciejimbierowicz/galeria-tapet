@@ -8,7 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link href="css/styles.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Pacifico&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&family=Pacifico&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
 
 
 </head>
@@ -19,18 +19,21 @@
   require 'layout/header.php';
   require 'libs/functions.php';
 
-  $categories = get_categories();
-  $wallpaper_category = $_GET['category'];
   $pdo = get_connection();
+  $all_categories = $pdo->query('SELECT * FROM categories');
+  $categories = $all_categories->fetchAll();
 
-  $rows = change_category($wallpaper_category);
+  $wallpaper_category = $_GET['category'];
+  
+
+  $rows = change_category($pdo, $wallpaper_category);
 
   ?>
 
   <div class="category-button container">
     <div class="row">
       <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <h1 class="gallery-title">Galeria Tapet</h1>
+        <img src="img/logo/logo.jpg" id="logo">
       </div>
 
       <div class="categories-container">
@@ -38,9 +41,9 @@
         foreach ($categories as $category) {
           $categoryName = $category['name'];
           if ($categoryName == $wallpaper_category) {
-            echo "<a class='btn btn-sm filter-button active-class' style='width: fit-content;' href='category.php?category=$categoryName' type='button' >$categoryName</a>";
+            echo "<a class='btn filter-button active-class' style='width: fit-content;' href='category.php?category=$categoryName' type='button' >$categoryName</a>";
           } else {
-            echo "<a class='btn btn-sm filter-button' style='width: fit-content;' href='category.php?category=$categoryName' type='button' >$categoryName</a>";
+            echo "<a class='btn filter-button' style='width: fit-content; border-radius: 0;' href='category.php?category=$categoryName' type='button' >$categoryName</a>";
           }
         }
         ?>
@@ -76,8 +79,7 @@
 
   <section class='gallery'>
     <div class='container-fluid'>
-      <?php echo "<h2 class='text-lg-start mt-4 mb-0'>$wallpaper_category</h2>" ?>
-      <hr class="mt-2 mb-5">
+      <?php echo "<h2 class='text-lg-start mt-4 mb-4'>$wallpaper_category</h2>" ?>
       <div class='row text-center text-lg-start photo-container'>
         <?php
         foreach ($rows as $wallpaper) {

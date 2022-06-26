@@ -2,7 +2,9 @@
 require 'libs/functions.php';
 
 $pdo = get_connection();
-$categories = get_categories();
+
+$all_categories = $pdo->query('SELECT * FROM categories');
+$categories = $all_categories->fetchAll();
 
 $list = $_GET['list'];
 $id = $_GET['id'];
@@ -26,7 +28,7 @@ $item_name = $item['name'];
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link href="css/styles.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Pacifico&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&family=Pacifico&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
 
 
 </head>
@@ -44,13 +46,13 @@ $item_name = $item['name'];
     <div>
       <a class='<?php if ($list == 'wallpapers') {
                   echo "active-class ";
-                } ?>btn btn-sm filter-button' href="list.php?list=wallpapers">Tapety</a>
+                } ?>btn btn-sm admin-filter-button' href="list.php?list=wallpapers">Tapety</a>
       <a class='<?php if ($list == 'categories') {
                   echo "active-class ";
-                } ?>btn btn-sm filter-button' href="list.php?list=categories">Kategorie</a>
+                } ?>btn btn-sm admin-filter-button' href="list.php?list=categories">Kategorie</a>
       <a class='<?php if ($list == 'users') {
                   echo "active-class ";
-                } ?>btn btn-sm filter-button' href="list.php?list=users">Użytkownicy</a>
+                } ?>btn btn-sm admin-filter-button' href="list.php?list=users">Użytkownicy</a>
     </div>
   </div>
 

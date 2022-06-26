@@ -19,7 +19,8 @@ $description = $item['description'];
 $item_size = $item['weight'];
 $item_category = $item['category'];
 
-$categories = get_categories();
+$all_categories = $pdo->query('SELECT * FROM categories');
+$categories = $all_categories->fetchAll();
 
 
 ?>
@@ -34,7 +35,7 @@ $categories = get_categories();
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link href="css/styles.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Pacifico&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&family=Pacifico&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
 
 
 </head>
@@ -46,53 +47,39 @@ $categories = get_categories();
   <div class="categories container">
     <div class="row">
       <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <h1 class="gallery-title">Galeria Tapet</h1>
+        <img src="img/logo/logo.jpg" id="logo">
       </div>
 
       <div class="categories-container">
         <?php
         foreach ($categories as $category) {
           $categoryName = $category['name'];
-          echo "<a class='btn btn-sm filter-button' style='width: fit-content;' href='category.php?category=$categoryName' type='button' >$categoryName</a>";
+          echo "<a class='btn btn-sm filter-button' href='category.php?category=$categoryName' type='button' >$categoryName</a>";
         }
         ?>
       </div>
     </div>
   </div>
-
-  <section class="product-section">
-    <div class="container-fluid mt-4">
-      <div class="row mb-4 text-lg-start">
-        <h2 class="mt-4 mb-0"><?php echo "$name" ?></h2>
+      <br><br><hr><br>
+  
+  <h2 class="mt-4 mb-4"><?php echo "$name" ?></h2>
+  <section class="wallpaper-section">
+      <div class="wallpaper-div">
+        <img src=<?php echo "$url" ?> alt="Image" class="wallpaper-site-img">
       </div>
-      <div class="row">
-        <div class="col-xl-8 col-md-7 col-sm-12 ">
-          <img src=<?php echo "$url" ?> alt="Image" class="img-fluid">
-          <div class="text-center mt-3">
-            <?php
-            echo "<a type='button' class='btn btn-primary btn-lg' href='$url' download>Pobierz</a>";
-            ?>
-          </div>
-        </div>
-
-        <div class="col-xl-4 col-md-5 col-sm-12">
-          <div class="wallpaper-description">
-            <h3 class="pt-4">Opis:</h3><span><?php echo "$description" ?></span>
-            <div class="mb-4 mt-4">
-              <div class="mr-4 mb-2">
-                <h3>Kategoria: </h3><span><?php echo "$item_category" ?></span>
-              </div>
-            </div>
-            <div class="mb-4">
-              <div class="mr-4 mb-2">
-                <h3>Rozdzielczość: </h3><span><?php echo "$resolution" ?></span>
-              </div>
-            </div>
-            <div class="mb-4 pb-3">
-              <h3>Waga pliku: </h3><span><?php echo "$item_size" ?></span>
-            </div>
-
+      <div class="picture-desc" >
+        <div><h3>Opis:</h3><span ><?php echo "$description" ?></span></div>                        
+        <div><h3>Kategoria: </h3><span><?php echo "$item_category" ?></span></div>            
+        <div><h3>Rozdzielczość: </h3><span><?php echo "$resolution" ?></span></div>
+        <div><h3>Waga pliku: </h3><span><?php echo "$item_size" ?></span></div>
+      </div>
   </section>
+  <br>
+  <div>
+  <?php
+      echo "<a type='button' class='btn btn-dark btn-lg' style='font-size:2rem;margin-bottom: 100px;' href='$url' download>Pobierz</a>";
+  ?>
+  </div> 
   </br></br>
   <?php require 'layout/footer.php'; ?>
 </body>

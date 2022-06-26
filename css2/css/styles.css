@@ -2,15 +2,13 @@
     text-align: center;
     background-color: #FFFFFF;
     color: black;
-    font-family: 'Oswald', sans-serif;
-    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
 }
 
 
 footer {
     height: 170px;
-    color: white;
-    background-color: rgb(0, 0, 0);
+    background-color: grey;
     font-size: 16px;
     font-style: bold;
     display:flex;
@@ -34,8 +32,8 @@ footer {
 
 /* ----------------- GALLERY SECTION ---------------- */
 
-.categories-container .btn {
-    border-radius: 0;
+.categories-container {
+    
 }
 
 .category-button {
@@ -47,10 +45,13 @@ footer {
 .filter-button
 {   
     font-size: 20px;
+    /* padding-right: 5px;  */
+    /* border: 1px solid black;
+    border-radius: 5px;
+    text-align: center; */
     color: black;
-    border-radius: 0;
-    margin-right: 12px;
-    border-bottom: 3px solid #141412;
+    margin-right: 10px;
+    /* margin-bottom: 30px;  */
 
 }
 .filter-button:hover
@@ -101,45 +102,24 @@ footer {
 
 /*------------------ WALLPAPER SECTION ------------------*/
 
-.picture-desc {
-  border: 2px solid;
-  border-radius: 10px;
-  padding-top: 60px; 
-  display: flex; 
-  align-items: center; 
-  flex-direction: column; 
-  text-align:center; 
-  color: white;
-  background-color: #393E46; 
-  width: 300px;
-  height: 500px;
+
+.product-section {
+    text-align: center
 }
 
-.picture-desc h3 {
-  margin-top: 20px;
+.product-section img {
+    max-height: 85%; 
+    min-width: 95%
 }
 
-
-.wallpaper-div {
-  height: 500px; 
-  min-width:40%;
-  max-width: 60%; 
-  margin-right: 5px; 
-  border-radius: 20px;
+.wallpaper-description {
+    background-color: rgb(214, 210, 210);
+    min-height: 85%;
+    
 }
 
-.wallpaper-section {
-  display:flex;
-  justify-content: center;
-  align-items:center;
-}
-
-.wallpaper-site-img {
-  border: 2px solid; 
-  max-width: 100%; 
-  min-width: 400px;
-  height:500px; 
-  border-radius: 10px;
+.wallpaper-description .btn {
+    margin-bottom: 20px;
 }
 
 .wallpaper-title {
@@ -215,29 +195,6 @@ input[type="password"]{
 
 
 /* --------------- ADMIN FORMS SECTION -------------- */
-
-.admin-filter-button {
-    font-size: 20px;
-    padding-right: 5px; 
-    border: 1px solid black; 
-    border-radius: 5px;
-    text-align: center; 
-    color: black;
-    margin-right: 10px;
-    margin-bottom: 30px; 
-
-}
-
-.admin-filter-button:hover
-{
-    font-size: 20px;
-    border: 1px solid black;
-    border-radius: 5px;
-    text-align: center;
-    color: #ffffff;
-    background-color: black;
-
-}
 
 .active-class {
     background-color: black;
@@ -382,8 +339,8 @@ form p {
     width: 60px;
     height: 60px;
     font-size: 1.1rem;
-    color: rgb(255, 255, 255);
-    background-color: #c7c9c9;
+    color: #999;
+    background-color: #EEEEEE;
     margin: 10px;
     border-radius: 5px;
     text-decoration: none;
@@ -391,8 +348,7 @@ form p {
 }
 
 .paging-link:hover {
-    background-color:#393E46;
-    color: white;
+    background-color:rgba(0, 0, 0, 0.15);
 }
 
 .page-navigation {
@@ -406,36 +362,39 @@ form p {
 
 @media screen and (max-width: 1030px) {
     
-  .filter-button {
-    margin-bottom: 15px;
-  }  
+    .photo-container {
+        margin-left: 0;
+    }
 
-  .photo-container {
-    margin-left: 0;
-  }
+    .page-navigation {
+        margin-right: 20px;
+    }
 
-  .page-navigation {
-    margin-right: 20px;
-  }
-  
-  .picture-desc {
-    width: 200px;
-    max-width: 50%;
+    .product-section .container-fluid {
+        padding-right: 0px;
+    }
+
     
-  }
-  .wallpaper-div {
-    max-width: 70%;
-    margin-right: 5px;
-  }
+    .wallpaper-description {
+        font-size: 12px;
 
-  .wallpaper-site-img {
-    min-width: 300px;
-    width: 100%;
-  }
+    }
 
-  .wallpaper-title {
-    padding-left: auto;
-}
+    .wallpaper-description h3 {
+        font-size: 15px;
+        font-weight: bold;
+        display:inline-block;
+        margin-right: 5px;
+    }
+
+    .wallpaper-description {
+        max-width: 100%;
+    }
+
+    .wallpaper-title {
+        padding-left: auto;
+    }
+    
   
 
 }
@@ -443,69 +402,40 @@ form p {
 
 /* --------------------- SMALL SCREEN -------------------- */
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 700px) {
 
-  .admin-forms {
-      width: 95%;
-  }
+    .admin-forms {
+        width: 95%;
+    }
 
-  #logo {
-    height: 200px; 
-    width: auto
-  }
-
-  .gallery img {
-      max-width: 100%;
-      width: 100%;
-      height: 300px;
-  }
-
-  .paging-link {
-      display: none;
-
-  }
-
-  .upload-form {
+    #logo {
+      height: 200px; 
       width: auto
-  }
+    }
 
+    .gallery img {
+        width: 100%;
+        height: 300px;
+    }
 
+    .paging-link {
+        display: none;
 
-  .picture-desc {
-    margin-top: 10px;
-    padding-top: 0;
-    padding-bottom: 20px;
-    width: 95%;
-    height: auto;
-    font-size: 14px;
-  }
+    }
 
-  .picture-desc h3 {
-    font-size: 22px;
-  }
-
-  .wallpaper-div {
-    max-width: 95%;
-    width: 95%;
-  }
-
-  .wallpaper-name {
-    font-size: 20px;
-  }
-
-  .wallpaper-section {
-    flex-direction: column;
-    justify-content: center
+    .upload-form {
+        width: auto
+    }
 
 }
 
-}
 
 
 #error-message {
     color: red;
     font-size: 15px;
 }
+
 
 
 
