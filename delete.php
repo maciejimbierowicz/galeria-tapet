@@ -19,7 +19,6 @@ if (in_array($item_table, $table_list)) {
     $result->execute();
 }
 
-
 if ($item_table === 'wallpapers') {
     $_SESSION['success'] = "<span style='color: red'>Usunięto tapetę!</span>";
     header("Location: list.php?list=wallpapers");

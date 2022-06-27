@@ -1,12 +1,9 @@
 <?php
 require 'libs/functions.php';
 
-
 $pdo = get_connection();
 $list = $_GET['list'];
-
 $listArray = ['wallpapers', 'users', 'categories'];
-
 $results_per_page = 10;
 
 if (in_array($list, $listArray)) {
@@ -16,7 +13,6 @@ if (in_array($list, $listArray)) {
 }
 
 $number_of_results = count($rows);
-
 $number_of_pages = ceil($number_of_results / $results_per_page);
 
 if (!isset($_GET['page'])) {
@@ -36,7 +32,6 @@ if (in_array($list, $listArray)) {
   $result->execute();
   $rows = $result->fetchAll();
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -50,10 +45,7 @@ if (in_array($list, $listArray)) {
   <link href="css/styles.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&family=Pacifico&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
-
-
 </head>
-
 <body>
 
   <?php
@@ -63,18 +55,11 @@ if (in_array($list, $listArray)) {
   }
   ?>
 
-
   <div class="admin-menu">
     <div>
-      <a class='<?php if ($list == 'wallpapers') {
-                  echo "active-class ";
-                } ?>btn btn-sm admin-filter-button' href="list.php?list=wallpapers">Tapety</a>
-      <a class='<?php if ($list == 'categories') {
-                  echo "active-class ";
-                } ?>btn btn-sm admin-filter-button' href="list.php?list=categories">Kategorie</a>
-      <a class='<?php if ($list == 'users') {
-                  echo "active-class ";
-                } ?>btn btn-sm admin-filter-button' href="list.php?list=users">Użytkownicy</a>
+      <a class='<?php if ($list == 'wallpapers') {echo "active-class ";} ?>btn btn-sm admin-filter-button' href="list.php?list=wallpapers">Tapety</a>
+      <a class='<?php if ($list == 'categories') {echo "active-class ";} ?>btn btn-sm admin-filter-button' href="list.php?list=categories">Kategorie</a>
+      <a class='<?php if ($list == 'users') {echo "active-class ";} ?>btn btn-sm admin-filter-button' href="list.php?list=users">Użytkownicy</a>
     </div>
   </div>
 
@@ -119,40 +104,39 @@ if (in_array($list, $listArray)) {
           </tr>
         </thead>
         <tbody>
-          <?php
-          foreach ($rows as $row) {
-            $id = $row['id'];
-            $name = $row['name'];
-            $item_date = $row['date'];
+        <?php
+        foreach ($rows as $row) {
+          $id = $row['id'];
+          $name = $row['name'];
+          $item_date = $row['date'];
 
-            if ($list == 'wallpapers') {
-              $url = $row['url'];
-            } else {
-              $url = "";
-            }
-
-            echo "<tr>";
-            echo "<td>$id</td>";
-            echo "<td>$item_date</td>";
-            if ($list == 'wallpapers') {
-              echo "<td><a href='wallpaper.php?id=$id'>$name</a></td>";
-            } else {
-              echo "<td>$name</td>";
-            }
-            echo "<td>
-              <div class='btn-group text-lg-start'>
-                <a class='btn btn-sm btn-secondary action-button' href='edit.php?id=$id&list=$list'>Edytuj</a>
-                <a class='btn btn-sm btn-danger action-button delete-button' data-confirm='Czy na pewno chcesz usunąć ten element?' style='width:fit-content' href='delete.php?id=$id&list=$list'>Usuń</a>
-              </div>
-              </td>";
-            echo "</tr>";
+          if ($list == 'wallpapers') {
+            $url = $row['url'];
+          } else {
+            $url = "";
           }
 
-          ?>
+          echo "<tr>";
+          echo "<td>$id</td>";
+          echo "<td>$item_date</td>";
+          if ($list == 'wallpapers') {
+            echo "<td><a href='wallpaper.php?id=$id'>$name</a></td>";
+          } else {
+            echo "<td>$name</td>";
+          }
+          echo "<td>
+            <div class='btn-group text-lg-start'>
+              <a class='btn btn-sm btn-secondary action-button' href='edit.php?id=$id&list=$list'>Edytuj</a>
+              <a class='btn btn-sm btn-danger action-button delete-button' data-confirm='Czy na pewno chcesz usunąć ten element?' style='width:fit-content' href='delete.php?id=$id&list=$list'>Usuń</a>
+            </div>
+            </td>";
+          echo "</tr>";
+        }
+        ?>
         </tbody>
       </table>
-
     </div>
+
     <div class='page-container admin-paging'>
       <?php
       $active_page = $page;
@@ -168,7 +152,7 @@ if (in_array($list, $listArray)) {
       }
       if ($active_page != $number_of_pages) {
         echo '<a class="page-navigation btn btn-primary" href="list.php?list=' . $list . '&page=' . $active_page + 1 . '">' . 'Następna Strona</a>';
-      }
+      } 
       ?>
     </div>
   </div>

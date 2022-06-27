@@ -1,19 +1,15 @@
 <?php
-
 require 'libs/functions.php';
 
 $pdo = get_connection();
 $all_categories = $pdo->query('SELECT * FROM categories');
 $categories = $all_categories->fetchAll();
 
-
 $latestWallpapers = $pdo->query('SELECT * FROM wallpapers ORDER BY id DESC LIMIT 16');
 $latestRows = $latestWallpapers->fetchAll();
 
 $highestQuality = $pdo->query('SELECT * FROM wallpapers ORDER BY resolution DESC LIMIT 16');
 $qualityRows = $highestQuality->fetchAll();
-
-
 ?>
 
 <!DOCTYPE html>
@@ -27,10 +23,7 @@ $qualityRows = $highestQuality->fetchAll();
   <link href="css/styles.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&family=Pacifico&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
-
-
 </head>
-
 <body>
 
   <?php
@@ -67,29 +60,23 @@ $qualityRows = $highestQuality->fetchAll();
       unset($_SESSION['zalogowany']);
       header("Location: index.php#staticBackdrop");
     }
-  }
-
-
-  ?>
+  } ?>
 
   <div class="category-button container">
     <div class="row">
       <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <img src="img/logo/logo.jpg" id="logo">
       </div>
-
       <div class="categories-container">
         <?php
         foreach ($categories as $category) {
           $categoryName = $category['name'];
           echo "<a class='btn filter-button' style='width: fit-content;  border-radius: 0;' href='category.php?category=$categoryName' type='button' >$categoryName</a>";
-        }
-        ?>
+        } ?>
       </div>
     </div>
   </div>
-
-
+  
   <section class='gallery'>
     <div class='container-fluid mb-5 pb-5'>
       <h2 class="text-lg-start mt-4 mb-4">Najnowsze Tapety</h2>
@@ -103,7 +90,6 @@ $qualityRows = $highestQuality->fetchAll();
           $idLink = 'wallpaper.php?id=' . $item['id'];
           $file_size = format_size(filesize($url));
 
-
           echo "<div class='col-lg-3 col-md-4 col-12 mb-5'>";
           echo "<a class='d-block mb-1 h-60' href='$idLink'><img src='$url' class='img-fluid gallery-image' alt='gallery'></a>";
           echo <<<END
@@ -116,7 +102,6 @@ $qualityRows = $highestQuality->fetchAll();
         ?>
       </div>
     </div>
-
 
     <div class='container-fluid'>
       <h2 class="text-lg-start mt-4 mb-4">Tapety o największej rozdzielczości</h2>
@@ -140,15 +125,11 @@ $qualityRows = $highestQuality->fetchAll();
         ?>
       </div>
   </section>
-
   <?php require 'layout/footer.php'; ?>
-
   <script>
     $(document).ready(function() { //show modal if login fails
 
       if (window.location.href.indexOf('#staticBackdrop') != -1) {
         $('#staticBackdrop').modal('show');
-      }
-
-    });
+      }});
   </script>

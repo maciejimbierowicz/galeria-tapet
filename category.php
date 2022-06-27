@@ -9,12 +9,9 @@
   <link href="css/styles.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&family=Pacifico&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
-
-
 </head>
 
 <body>
-
   <?php
   require 'layout/header.php';
   require 'libs/functions.php';
@@ -22,12 +19,8 @@
   $pdo = get_connection();
   $all_categories = $pdo->query('SELECT * FROM categories');
   $categories = $all_categories->fetchAll();
-
   $wallpaper_category = $_GET['category'];
-  
-
   $rows = change_category($pdo, $wallpaper_category);
-
   ?>
 
   <div class="category-button container">
@@ -35,7 +28,6 @@
       <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <img src="img/logo/logo.jpg" id="logo">
       </div>
-
       <div class="categories-container">
         <?php
         foreach ($categories as $category) {
@@ -45,8 +37,7 @@
           } else {
             echo "<a class='btn filter-button' style='width: fit-content; border-radius: 0;' href='category.php?category=$categoryName' type='button' >$categoryName</a>";
           }
-        }
-        ?>
+        } ?>
       </div>
     </div>
   </div>
@@ -74,7 +65,6 @@
   $result->execute();
 
   $rows = $result->fetchAll();
-
   ?>
 
   <section class='gallery'>

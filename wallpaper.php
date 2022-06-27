@@ -1,7 +1,6 @@
 <?php
 require 'libs/functions.php';
 
-
 $itemID = $_GET['id'];
 
 $pdo = get_connection();
@@ -9,7 +8,6 @@ $sql = "SELECT * FROM wallpapers WHERE id=:itemID";
 $result = $pdo->prepare($sql);
 $result->bindParam(':itemID', $itemID, PDO::PARAM_INT);
 $result->execute();
-
 $item = $result->fetch();
 
 $url = $item['url'];
@@ -21,9 +19,8 @@ $item_category = $item['category'];
 
 $all_categories = $pdo->query('SELECT * FROM categories');
 $categories = $all_categories->fetchAll();
-
-
 ?>
+
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -36,10 +33,7 @@ $categories = $all_categories->fetchAll();
   <link href="css/styles.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&family=Pacifico&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
-
-
 </head>
-
 
 <body>
   <?php require 'layout/header.php'; ?>
@@ -49,7 +43,6 @@ $categories = $all_categories->fetchAll();
       <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <img src="img/logo/logo.jpg" id="logo">
       </div>
-
       <div class="categories-container">
         <?php
         foreach ($categories as $category) {
@@ -60,8 +53,7 @@ $categories = $all_categories->fetchAll();
       </div>
     </div>
   </div>
-      <br><br><hr><br>
-  
+      <br><br><hr><br> 
   <h2 class="mt-4 mb-4"><?php echo "$name" ?></h2>
   <section class="wallpaper-section">
       <div class="wallpaper-div">

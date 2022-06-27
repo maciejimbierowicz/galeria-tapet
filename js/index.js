@@ -1,5 +1,4 @@
 // DELETE CONFIRMATION
-
 let deleteLinks = document.querySelectorAll('.delete-button');
 
 for (var i = 0; i < deleteLinks.length; i++) {
@@ -13,4 +12,17 @@ for (var i = 0; i < deleteLinks.length; i++) {
       }
   });
 }
+
+// Show password on User Edit and Add User Form
+let passwordCheckbox = document.getElementById("user-password");
+
+function showPassword() {
+    if (passwordCheckbox.type === "password") {  
+      passwordCheckbox.type = "text";
+    } else {
+      passwordCheckbox.type = "password";
+    }
+}
+
+passwordCheckbox.addEventListener("click", showPassword);
 

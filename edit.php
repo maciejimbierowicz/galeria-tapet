@@ -13,9 +13,7 @@ $result = $pdo->prepare($sql);
 $result->bindParam(':id', $id, PDO::PARAM_INT);
 $result->execute();
 $item = $result->fetch();
-
 $item_name = $item['name'];
-
 ?>
 
 <!DOCTYPE html>
@@ -29,12 +27,8 @@ $item_name = $item['name'];
   <link href="css/styles.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&family=Pacifico&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
-
-
 </head>
-
 <body>
-
   <?php
   require 'layout/header.php';
   if (!isset($_SESSION['zalogowany'])) {
@@ -44,15 +38,9 @@ $item_name = $item['name'];
 
   <div class="admin-menu">
     <div>
-      <a class='<?php if ($list == 'wallpapers') {
-                  echo "active-class ";
-                } ?>btn btn-sm admin-filter-button' href="list.php?list=wallpapers">Tapety</a>
-      <a class='<?php if ($list == 'categories') {
-                  echo "active-class ";
-                } ?>btn btn-sm admin-filter-button' href="list.php?list=categories">Kategorie</a>
-      <a class='<?php if ($list == 'users') {
-                  echo "active-class ";
-                } ?>btn btn-sm admin-filter-button' href="list.php?list=users">Użytkownicy</a>
+      <a class='<?php if ($list == 'wallpapers') {echo "active-class ";} ?>btn btn-sm admin-filter-button' href="list.php?list=wallpapers">Tapety</a>
+      <a class='<?php if ($list == 'categories') {echo "active-class ";} ?>btn btn-sm admin-filter-button' href="list.php?list=categories">Kategorie</a>
+      <a class='<?php if ($list == 'users') {echo "active-class ";} ?>btn btn-sm admin-filter-button' href="list.php?list=users">Użytkownicy</a>
     </div>
   </div>
 
@@ -75,7 +63,7 @@ $item_name = $item['name'];
         <p>Kategoria:</p>
         <select  name="category" value='$item_category' required> 
     END;
-
+    
       foreach ($categories as $category) {
         $category_name = $category['name'];
         echo "<option value=$category_name>$category_name</option>";
@@ -98,7 +86,8 @@ $item_name = $item['name'];
         <p>Login:</p>
         <input type="text" name="login" value='$item_name' required><br>
         <p>Hasło:</p>
-        <input type="text" name="password" $item_password required><br>
+        <input type="text" id="user-password" name="password" $item_password required><br>
+        <input type="checkbox" onClick="showPassword()">Pokaż hasło <br><br>
         <input class="btn btn-primary" type='submit' name='submitUser' value='Zaktualizuj Dane'>
       </form>
     </div>

@@ -92,7 +92,6 @@ else if (isset($_POST['submitUser']) && isset($_POST['login'])) {
   $result->bindParam(':join_date', $join_date, PDO::PARAM_STR);
   $result->execute();
 
-
   $_SESSION['success'] = "<span style='color: green'>Dodano Użytkownika!</span>";
   header("Location: list.php?list=users");
 

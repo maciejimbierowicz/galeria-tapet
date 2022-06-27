@@ -6,7 +6,6 @@ if (!isset($_SESSION['zalogowany'])) {
     header("Location: index.php");
 }
 
-
 $pdo = get_connection();
 $id = $_GET['id'];
 
@@ -27,13 +26,11 @@ if (isset($_POST['submitUser']) && isset($_POST['login'])) {
     header("Location: list.php?list=users");
 }
 
-
 // Category Edit
 else if (isset($_POST['submitCategory']) && isset($_POST['newCategory'])) {
     $category_name = filter_var($_POST['newCategory'], FILTER_SANITIZE_SPECIAL_CHARS);
     
-    $sql = "UPDATE categories
-                SET name= :category_name WHERE id= :id";
+    $sql = "UPDATE categories SET name= :category_name WHERE id= :id";
     $result = $pdo->prepare($sql);
     $result->bindParam(':category_name', $category_name, PDO::PARAM_STR);
     $result->bindParam(':id', $id, PDO::PARAM_INT);
